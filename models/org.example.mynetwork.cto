@@ -56,10 +56,21 @@ transaction ChangeOwner {
   o String newOwner
 }
 
+transaction markAsStolen {
+  -->Phone phone
+  o String status
+}
 event PhoneExhange {
   --> Phone phone
   o String oldOwner
   o String newOwner
 }
+
+event stolen {
+  --> Phone phone
+  o String oldStatus
+  o String newStatus
+}
+
 
 
