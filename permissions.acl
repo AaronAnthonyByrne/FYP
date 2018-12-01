@@ -28,6 +28,14 @@ rule LawEnforcementCanRead {
     action: ALLOW
 }
 //Retailer rules
+rule OwnerHasFullAccessToTheirAssets {
+    description: "Allow all owners full access to their assets"
+    participant(p): "org.example.mynetwork.Retailer"
+    operation: ALL
+    resource(r): "org.example.mynetwork.Phone"
+    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
 rule RetailerCanChangeOwner{
     description: "Allow all Retailers to change the phone ownership"
     participant: "org.example.mynetwork.Retailer"
@@ -36,7 +44,15 @@ rule RetailerCanChangeOwner{
     action: ALLOW
 }
 //Recycler rules
-rule RecyclerCanCheckandChange{
+rule OwnerHasFullAccessToTheirAssets {
+    description: "Allow all owners full access to their assets"
+    participant(p): "org.example.mynetwork.Recycler"
+    operation: ALL
+    resource(r): "org.example.mynetwork.Phone"
+    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+rule RecyclerCanChange{
     description: "Allow Recyclers to check onwership and change onwership if they own the phone"
     participant: "org.example.mynetwork.Recycler"
     operation: CREATE
