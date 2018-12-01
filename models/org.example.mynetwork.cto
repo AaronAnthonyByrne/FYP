@@ -22,7 +22,7 @@ participant Retailer identified by retailerId{
   o String retailerName
 }
 
-participant Recycyler identified by recyclerId {
+participant Recycler identified by recyclerId {
   o String recyclerId
   o String recyclerName
 }
