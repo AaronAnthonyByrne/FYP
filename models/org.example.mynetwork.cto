@@ -35,13 +35,18 @@ participant LawEnfrocment identified by branchId{
   o String branchAddress
 }
 
-participant Retail identified by networkId{
-  o String networkId
-  o String compnayName
+participant Retailer identified by retailerId{
+  o String retailerId
+  o String retailerName
+}
+
+participant Recycyler identified by recyclerId {
+  o String recyclerId
+  o String recyclerName
 }
 
 asset Phone identified by IMEI {
-  o String IMEI
+  o String IMEI //insert regex to make sure enough digits are entered
   --> PhoneOwner owner
   o String status
 }
