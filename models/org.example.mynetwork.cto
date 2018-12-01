@@ -18,25 +18,43 @@
 
 namespace org.example.mynetwork
 
-participant SampleParticipant identified by participantId {
-  o String participantId
+participant PhoneOwner identified by onwnerId {
+  o String onwnerId
   o String firstName
   o String lastName
 }
 
-asset SampleAsset identified by assetId {
-  o String assetId
-  --> SampleParticipant owner
-  o String value
+participant NetworkProvider identified by networkId{
+  o String networkId
+  o String compnayName
 }
 
-transaction SampleTransaction {
-  --> SampleAsset asset
-  o String newValue
+participant LawEnfrocment identified by branchId{
+  o String branchId
+  o String branchName
+  o String branchAddress
 }
 
-event SampleEvent {
-  --> SampleAsset asset
-  o String oldValue
-  o String newValue
+participant Retail identified by networkId{
+  o String networkId
+  o String compnayName
 }
+
+asset Phone identified by IMEI {
+  o String IMEI
+  --> PhoneOwner owner
+  o String status
+}
+
+transaction ChangeOwner {
+  --> Phone phone
+  o String newOwner
+}
+
+event PhoneExhange {
+  --> Phone phone
+  o String oldOwner
+  o String newOwner
+}
+
+
