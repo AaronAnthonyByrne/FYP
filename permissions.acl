@@ -1,10 +1,10 @@
 /**
  * access control list. Defintion of who has acees to what
  */
-//Rules for Phone Owners
-rule OwnerHasFullAccessToTheirAssets {
+//Rules for Member
+rule MemberHasFullAccessToTheirAssets {
     description: "Allow all owners full access to their assets"
-    participant(p): "org.example.mynetwork.PhoneOwner"
+    participant(p): "org.example.mynetwork.Member"
     operation: ALL
     resource(r): "org.example.mynetwork.Phone"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
@@ -12,23 +12,15 @@ rule OwnerHasFullAccessToTheirAssets {
 }
 rule OwnerCanChangeOwnership {
     description: "Allow all participants to submit transactions"
-    participant: "org.example.mynetwork.PhoneOwner"
+    participant: "org.example.mynetwork.Member"
     operation: CREATE
     resource: "org.example.mynetwork.PhoneExhange"
     action: ALLOW
 }
 //Need to add rule for Checking other users IMEI
 
-//Law Enforcemnt rules
-rule LawEnforcementCanRead {
-    description: "Allow all law enforcement agents read access to all resources"
-    participant: "org.example.mynetwork.LawEnfrocment"
-    operation: READ
-    resource: "org.example.mynetwork.*"
-    action: ALLOW
-}
 //Retailer rules
-rule OwnerHasFullAccessToTheirAssets {
+rule RetailterHasFullAccessToTheirAssets {
     description: "Allow all owners full access to their assets"
     participant(p): "org.example.mynetwork.Retailer"
     operation: ALL
@@ -44,7 +36,7 @@ rule RetailerCanChangeOwner{
     action: ALLOW
 }
 //Recycler rules
-rule OwnerHasFullAccessToTheirAssets {
+rule RecyclerHasFullAccessToTheirAssets {
     description: "Allow all owners full access to their assets"
     participant(p): "org.example.mynetwork.Recycler"
     operation: ALL
@@ -52,17 +44,28 @@ rule OwnerHasFullAccessToTheirAssets {
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
 }
-rule RecyclerCanChange{
+rule RecyclerCanChangeOwner{
     description: "Allow Recyclers to check onwership and change onwership if they own the phone"
     participant: "org.example.mynetwork.Recycler"
     operation: CREATE
     resource: "org.example.mynetwork.PhoneExhange"
     action: ALLOW
 }
+//Law Enforcemnt rules
+rule LawEnforcementCanRead {
+    description: "Allow all law enforcement agents read access to all resources"
+    participant: "org.example.mynetwork.LawEnfrocment"
+    operation: READ
+    resource: "org.example.mynetwork.*"
+    action: ALLOW
+}
 //Network Provider rules
 rule NetworkProviderRules{
     description: "The Network provider should be able to change the phones status"
-    participant: "org.example.mynetwork.Ner"
+    participant: "org.example.mynetwork.NetworkProvider"
+    operation: CREATE
+    resource: "org.example.mynetwork.stolen"
+    action: ALLOW
 }
 //Allow all users access to the system
 rule SystemACL {
