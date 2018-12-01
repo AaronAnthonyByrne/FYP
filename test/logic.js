@@ -13,9 +13,9 @@ chai.should();
 chai.use(require('chai-as-promised'));
 
 const namespace = 'org.example.mynetwork';
-const assetType = 'SampleAsset';
+const assetType = 'Phone';
 const assetNS = namespace + '.' + assetType;
-const participantType = 'SampleParticipant';
+const participantType = 'PhoneOwner';
 const participantNS = namespace + '.' + participantType;
 
 describe('#' + namespace, () => {
