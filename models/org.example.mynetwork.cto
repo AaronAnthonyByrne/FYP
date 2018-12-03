@@ -32,7 +32,7 @@ participant LawEnfrocment identified by branchId{
 asset Phone identified by IMEI {
   o String IMEI //insert regex to make sure enough digits are entered
   --> PhoneOwner owner
-  o Boolean status
+  o Boolean status 
 }
 
 transaction ChangeOwner {
