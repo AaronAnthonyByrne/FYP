@@ -3,21 +3,24 @@ import {Participant} from './org.hyperledger.composer.system';
 import {Transaction} from './org.hyperledger.composer.system';
 import {Event} from './org.hyperledger.composer.system';
 // export namespace org.example.mynetwork{
-   export abstract class PhoneOwner extends Participant {
+   export class PhoneOwner extends Participant {
       onwnerId: string;
    }
-   export class Member extends PhoneOwner {
+   export class Member extends Participant {
       email: string;
       firstName: string;
       lastName: string;
+      phones: PhoneOwner[];
    }
-   export class Retailer extends PhoneOwner {
+   export class Retailer extends Participant {
       retailerId: string;
       retailerName: string;
+      phones: PhoneOwner[];
    }
-   export class Recycler extends PhoneOwner {
+   export class Recycler extends Participant {
       recyclerId: string;
       recyclerName: string;
+      phones: PhoneOwner[];
    }
    export class NetworkProvider extends Participant {
       networkId: string;
@@ -31,7 +34,7 @@ import {Event} from './org.hyperledger.composer.system';
    export class Phone extends Asset {
       IMEI: string;
       owner: PhoneOwner;
-      status: boolean;
+      status: string;
    }
    export class ChangeOwner extends Transaction {
       phone: Phone;
@@ -39,7 +42,7 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class markAsStolen extends Transaction {
       phone: Phone;
-      status: boolean;
+      status: string;
    }
    export class PhoneExhange extends Event {
       phone: Phone;
@@ -48,7 +51,7 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class stolen extends Event {
       phone: Phone;
-      oldStatus: boolean;
-      newStatus: boolean;
+      oldStatus: string;
+      newStatus: string;
    }
 // }

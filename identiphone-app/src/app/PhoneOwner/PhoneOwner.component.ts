@@ -14,16 +14,16 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MemberService } from './Member.service';
+import { PhoneOwnerService } from './PhoneOwner.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  selector: 'app-member',
-  templateUrl: './Member.component.html',
-  styleUrls: ['./Member.component.css'],
-  providers: [MemberService]
+  selector: 'app-phoneowner',
+  templateUrl: './PhoneOwner.component.html',
+  styleUrls: ['./PhoneOwner.component.css'],
+  providers: [PhoneOwnerService]
 })
-export class MemberComponent implements OnInit {
+export class PhoneOwnerComponent implements OnInit {
 
   myForm: FormGroup;
 
@@ -32,18 +32,12 @@ export class MemberComponent implements OnInit {
   private currentId;
   private errorMessage;
 
-  email = new FormControl('', Validators.required);
-  firstName = new FormControl('', Validators.required);
-  lastName = new FormControl('', Validators.required);
-  phones = new FormControl('', Validators.required);
+  onwnerId = new FormControl('', Validators.required);
 
 
-  constructor(public serviceMember: MemberService, fb: FormBuilder) {
+  constructor(public servicePhoneOwner: PhoneOwnerService, fb: FormBuilder) {
     this.myForm = fb.group({
-      email: this.email,
-      firstName: this.firstName,
-      lastName: this.lastName,
-      phones: this.phones
+      onwnerId: this.onwnerId
     });
   };
 
@@ -53,7 +47,7 @@ export class MemberComponent implements OnInit {
 
   loadAll(): Promise<any> {
     const tempList = [];
-    return this.serviceMember.getAll()
+    return this.servicePhoneOwner.getAll()
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
@@ -99,29 +93,20 @@ export class MemberComponent implements OnInit {
 
   addParticipant(form: any): Promise<any> {
     this.participant = {
-      $class: 'org.example.mynetwork.Member',
-      'email': this.email.value,
-      'firstName': this.firstName.value,
-      'lastName': this.lastName.value,
-      'phones': this.phones.value
+      $class: 'org.example.mynetwork.PhoneOwner',
+      'onwnerId': this.onwnerId.value
     };
 
     this.myForm.setValue({
-      'email': null,
-      'firstName': null,
-      'lastName': null,
-      'phones': null
+      'onwnerId': null
     });
 
-    return this.serviceMember.addParticipant(this.participant)
+    return this.servicePhoneOwner.addParticipant(this.participant)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
-        'email': null,
-        'firstName': null,
-        'lastName': null,
-        'phones': null
+        'onwnerId': null
       });
       this.loadAll(); 
     })
@@ -137,13 +122,10 @@ export class MemberComponent implements OnInit {
 
    updateParticipant(form: any): Promise<any> {
     this.participant = {
-      $class: 'org.example.mynetwork.Member',
-      'firstName': this.firstName.value,
-      'lastName': this.lastName.value,
-      'phones': this.phones.value
+      $class: 'org.example.mynetwork.PhoneOwner',
     };
 
-    return this.serviceMember.updateParticipant(form.get('email').value, this.participant)
+    return this.servicePhoneOwner.updateParticipant(form.get('onwnerId').value, this.participant)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -163,7 +145,7 @@ export class MemberComponent implements OnInit {
 
   deleteParticipant(): Promise<any> {
 
-    return this.serviceMember.deleteParticipant(this.currentId)
+    return this.servicePhoneOwner.deleteParticipant(this.currentId)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -186,39 +168,18 @@ export class MemberComponent implements OnInit {
 
   getForm(id: any): Promise<any> {
 
-    return this.serviceMember.getparticipant(id)
+    return this.servicePhoneOwner.getparticipant(id)
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
-        'email': null,
-        'firstName': null,
-        'lastName': null,
-        'phones': null
+        'onwnerId': null
       };
 
-      if (result.email) {
-        formObject.email = result.email;
+      if (result.onwnerId) {
+        formObject.onwnerId = result.onwnerId;
       } else {
-        formObject.email = null;
-      }
-
-      if (result.firstName) {
-        formObject.firstName = result.firstName;
-      } else {
-        formObject.firstName = null;
-      }
-
-      if (result.lastName) {
-        formObject.lastName = result.lastName;
-      } else {
-        formObject.lastName = null;
-      }
-
-      if (result.phones) {
-        formObject.phones = result.phones;
-      } else {
-        formObject.phones = null;
+        formObject.onwnerId = null;
       }
 
       this.myForm.setValue(formObject);
@@ -237,10 +198,7 @@ export class MemberComponent implements OnInit {
 
   resetForm(): void {
     this.myForm.setValue({
-      'email': null,
-      'firstName': null,
-      'lastName': null,
-      'phones': null
+      'onwnerId': null
     });
   }
 }

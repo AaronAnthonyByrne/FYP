@@ -23,6 +23,7 @@ import { HomeComponent } from './home/home.component';
 
 import { PhoneComponent } from './Phone/Phone.component';
 
+import { PhoneOwnerComponent } from './PhoneOwner/PhoneOwner.component';
 import { MemberComponent } from './Member/Member.component';
 import { RetailerComponent } from './Retailer/Retailer.component';
 import { RecyclerComponent } from './Recycler/Recycler.component';
@@ -37,6 +38,7 @@ import { markAsStolenComponent } from './markAsStolen/markAsStolen.component';
     AppComponent,
     HomeComponent,
     PhoneComponent,
+    PhoneOwnerComponent,
     MemberComponent,
     RetailerComponent,
     RecyclerComponent,

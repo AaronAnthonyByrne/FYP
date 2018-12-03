@@ -86,7 +86,7 @@ describe('RecyclerComponent', () => {
 
     // mock form to be passed to the update function
     let mockForm = new FormGroup({
-      onwnerId: new FormControl('id')
+      recyclerId: new FormControl('id')
     });
     
     component.updateParticipant(mockForm);

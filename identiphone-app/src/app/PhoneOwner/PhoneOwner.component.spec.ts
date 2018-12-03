@@ -21,25 +21,25 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import * as sinon from 'sinon';
 import { DataService } from '../data.service';
-import { RetailerComponent } from './Retailer.component';
-import { RetailerService } from './Retailer.service';
+import { PhoneOwnerComponent } from './PhoneOwner.component';
+import { PhoneOwnerService } from './PhoneOwner.service';
 import { Observable } from 'rxjs';
 
-describe('RetailerComponent', () => {
-  let component: RetailerComponent;
-  let fixture: ComponentFixture<RetailerComponent>;
+describe('PhoneOwnerComponent', () => {
+  let component: PhoneOwnerComponent;
+  let fixture: ComponentFixture<PhoneOwnerComponent>;
 
-  let mockRetailerService;
+  let mockPhoneOwnerService;
   let mockDataService
 
   beforeEach(async(() => {
 
-    mockRetailerService = sinon.createStubInstance(RetailerService);
-    mockRetailerService.getAll.returns([]);
+    mockPhoneOwnerService = sinon.createStubInstance(PhoneOwnerService);
+    mockPhoneOwnerService.getAll.returns([]);
     mockDataService = sinon.createStubInstance(DataService);
 
     TestBed.configureTestingModule({
-      declarations: [ RetailerComponent ],
+      declarations: [ PhoneOwnerComponent ],
       imports: [
         BrowserModule,
         FormsModule,
@@ -47,12 +47,12 @@ describe('RetailerComponent', () => {
         HttpModule
       ],
       providers: [
-        {provide: RetailerService, useValue: mockRetailerService },
+        {provide: PhoneOwnerService, useValue: mockPhoneOwnerService },
         {provide: DataService, useValue: mockDataService },
       ]
     });
 
-    fixture = TestBed.createComponent(RetailerComponent);
+    fixture = TestBed.createComponent(PhoneOwnerComponent);
     component = fixture.componentInstance;
 
   }));
@@ -61,9 +61,9 @@ describe('RetailerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should update the table when a Retailer is added', fakeAsync(() => {
+  it('should update the table when a PhoneOwner is added', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceRetailer, 'addParticipant').returns(new Observable(observer => {
+    sinon.stub(component.servicePhoneOwner, 'addParticipant').returns(new Observable(observer => {
       observer.next('');
       observer.complete();
     }));
@@ -77,16 +77,16 @@ describe('RetailerComponent', () => {
     loadAllSpy.restore();
   }));
 
-  it('should update the table when a Retailer is updated', fakeAsync(() => {
+  it('should update the table when a PhoneOwner is updated', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceRetailer, 'updateParticipant').returns(new Observable(observer => {
+    sinon.stub(component.servicePhoneOwner, 'updateParticipant').returns(new Observable(observer => {
       observer.next('');
       observer.complete();
     }));
 
     // mock form to be passed to the update function
     let mockForm = new FormGroup({
-      retailerId: new FormControl('id')
+      onwnerId: new FormControl('id')
     });
     
     component.updateParticipant(mockForm);
@@ -98,9 +98,9 @@ describe('RetailerComponent', () => {
     loadAllSpy.restore();
   }));
   
-  it('should update the table when a Retailer is deleted', fakeAsync(() => {
+  it('should update the table when a PhoneOwner is deleted', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceRetailer, 'deleteParticipant').returns(new Observable(observer => {
+    sinon.stub(component.servicePhoneOwner, 'deleteParticipant').returns(new Observable(observer => {
       observer.next('');
       observer.complete();
     }));

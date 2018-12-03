@@ -1,22 +1,21 @@
 namespace org.example.mynetwork
 
-abstract participant PhoneOwner identified by onwnerId {
-  o String onwnerId
-}
-
-participant Member extends PhoneOwner{
+participant Member identified by email{
   o String email
   o String firstName
   o String lastName
+  o Phone phone
 }
-participant Retailer extends PhoneOwner{
+participant Retailer identified by retailerId{
   o String retailerId
   o String retailerName
+  o Phone phone
 }
 
-participant Recycler extends PhoneOwner{
+participant Recycler identified by recyclerId{
   o String recyclerId
   o String recyclerName
+  o Phone phone
 }
 participant NetworkProvider identified by networkId{
   o String networkId
@@ -31,8 +30,8 @@ participant LawEnfrocment identified by branchId{
 
 asset Phone identified by IMEI {
   o String IMEI //insert regex to make sure enough digits are entered
-  --> PhoneOwner owner
-  o Boolean status 
+  o String status
+  o String owner
 }
 
 transaction ChangeOwner {
@@ -41,8 +40,8 @@ transaction ChangeOwner {
 }
 
 transaction markAsStolen {
-  -->Phone phone
-  o Boolean status
+  --> Phone phone
+  o String status
 }
 event PhoneExhange {
   --> Phone phone
@@ -52,8 +51,8 @@ event PhoneExhange {
 
 event stolen {
   --> Phone phone
-  o Boolean oldStatus
-  o Boolean newStatus
+  o String oldStatus
+  o String newStatus
 }
 
 

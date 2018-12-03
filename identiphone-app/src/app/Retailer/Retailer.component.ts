@@ -34,14 +34,14 @@ export class RetailerComponent implements OnInit {
 
   retailerId = new FormControl('', Validators.required);
   retailerName = new FormControl('', Validators.required);
-  onwnerId = new FormControl('', Validators.required);
+  phones = new FormControl('', Validators.required);
 
 
   constructor(public serviceRetailer: RetailerService, fb: FormBuilder) {
     this.myForm = fb.group({
       retailerId: this.retailerId,
       retailerName: this.retailerName,
-      onwnerId: this.onwnerId
+      phones: this.phones
     });
   };
 
@@ -100,13 +100,13 @@ export class RetailerComponent implements OnInit {
       $class: 'org.example.mynetwork.Retailer',
       'retailerId': this.retailerId.value,
       'retailerName': this.retailerName.value,
-      'onwnerId': this.onwnerId.value
+      'phones': this.phones.value
     };
 
     this.myForm.setValue({
       'retailerId': null,
       'retailerName': null,
-      'onwnerId': null
+      'phones': null
     });
 
     return this.serviceRetailer.addParticipant(this.participant)
@@ -116,7 +116,7 @@ export class RetailerComponent implements OnInit {
       this.myForm.setValue({
         'retailerId': null,
         'retailerName': null,
-        'onwnerId': null
+        'phones': null
       });
       this.loadAll(); 
     })
@@ -133,11 +133,11 @@ export class RetailerComponent implements OnInit {
    updateParticipant(form: any): Promise<any> {
     this.participant = {
       $class: 'org.example.mynetwork.Retailer',
-      'retailerId': this.retailerId.value,
       'retailerName': this.retailerName.value,
+      'phones': this.phones.value
     };
 
-    return this.serviceRetailer.updateParticipant(form.get('onwnerId').value, this.participant)
+    return this.serviceRetailer.updateParticipant(form.get('retailerId').value, this.participant)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -187,7 +187,7 @@ export class RetailerComponent implements OnInit {
       const formObject = {
         'retailerId': null,
         'retailerName': null,
-        'onwnerId': null
+        'phones': null
       };
 
       if (result.retailerId) {
@@ -202,10 +202,10 @@ export class RetailerComponent implements OnInit {
         formObject.retailerName = null;
       }
 
-      if (result.onwnerId) {
-        formObject.onwnerId = result.onwnerId;
+      if (result.phones) {
+        formObject.phones = result.phones;
       } else {
-        formObject.onwnerId = null;
+        formObject.phones = null;
       }
 
       this.myForm.setValue(formObject);
@@ -226,7 +226,7 @@ export class RetailerComponent implements OnInit {
     this.myForm.setValue({
       'retailerId': null,
       'retailerName': null,
-      'onwnerId': null
+      'phones': null
     });
   }
 }
