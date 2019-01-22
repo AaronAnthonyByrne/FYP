@@ -15,3 +15,24 @@ composer network ping --card admin@identiphone-network
 composer-rest-server -c admin@identiphone-network -n never -u true -w true
 
 composer network upgrade -c peeradmin@hlfv1 -n identiphone-network -V 0.0.3
+
+composer participant add -c admin@identiphone-network -d '{
+  "$class": "org.example.mynetwork.Member",
+  "email": "string",
+  "firstName": "string",
+  "lastName": "string",
+  "ownerId": "string"
+}'
+
+composer participant add -c admin@identiphone-network -d '{
+  "$class": "org.example.mynetwork.Retailer",
+  "retailerId": "string",
+  "retailerName": "string",
+  "ownerId": "string"
+}'
+composer asset add -c admin@identiphone-network -d '{
+  "$class": "org.example.mynetwork.Phone",
+  "IMEI": "string",
+  "status": "string",
+  "owner": {}
+}'
