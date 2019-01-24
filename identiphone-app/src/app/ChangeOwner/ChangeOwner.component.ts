@@ -101,8 +101,8 @@ export class ChangeOwnerComponent implements OnInit {
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.example.mynetwork.ChangeOwner',
-      'phone': this.phone.value,
-      'newOwner': this.newOwner.value,
+      'phone': 'org.example.mynetwork.Phone#'+this.phone.value,
+      'newOwner': 'org.example.mynetwork.Member#'+this.newOwner.value,
       'transactionId': this.transactionId.value,
       'timestamp': this.timestamp.value
     };

@@ -33,14 +33,14 @@ export class PhoneComponent implements OnInit {
   private errorMessage;
 
   IMEI = new FormControl('', Validators.required);
-  owner = new FormControl('', Validators.required);
   status = new FormControl('', Validators.required);
+  owner = new FormControl('', Validators.required);
 
   constructor(public servicePhone: PhoneService, fb: FormBuilder) {
     this.myForm = fb.group({
       IMEI: this.IMEI,
-      owner: this.owner,
-      status: this.status
+      status: this.status,
+      owner: this.owner
     });
   };
 
@@ -99,14 +99,14 @@ export class PhoneComponent implements OnInit {
     this.asset = {
       $class: 'org.example.mynetwork.Phone',
       'IMEI': this.IMEI.value,
-      'owner': this.owner.value,
-      'status': this.status.value
+      'status': this.status.value,
+      'owner': this.owner.value
     };
 
     this.myForm.setValue({
       'IMEI': null,
-      'owner': null,
-      'status': null
+      'status': null,
+      'owner': null
     });
 
     return this.servicePhone.addAsset(this.asset)
@@ -115,8 +115,8 @@ export class PhoneComponent implements OnInit {
       this.errorMessage = null;
       this.myForm.setValue({
         'IMEI': null,
-        'owner': null,
-        'status': null
+        'status': null,
+        'owner': null
       });
       this.loadAll();
     })
@@ -133,8 +133,8 @@ export class PhoneComponent implements OnInit {
   updateAsset(form: any): Promise<any> {
     this.asset = {
       $class: 'org.example.mynetwork.Phone',
-      'owner': this.owner.value,
-      'status': this.status.value
+      'status': this.status.value,
+      'owner': this.owner.value
     };
 
     return this.servicePhone.updateAsset(form.get('IMEI').value, this.asset)
@@ -186,8 +186,8 @@ export class PhoneComponent implements OnInit {
       this.errorMessage = null;
       const formObject = {
         'IMEI': null,
-        'owner': null,
-        'status': null
+        'status': null,
+        'owner': null
       };
 
       if (result.IMEI) {
@@ -196,16 +196,16 @@ export class PhoneComponent implements OnInit {
         formObject.IMEI = null;
       }
 
-      if (result.owner) {
-        formObject.owner = result.owner;
-      } else {
-        formObject.owner = null;
-      }
-
       if (result.status) {
         formObject.status = result.status;
       } else {
         formObject.status = null;
+      }
+
+      if (result.owner) {
+        formObject.owner = result.owner;
+      } else {
+        formObject.owner = null;
       }
 
       this.myForm.setValue(formObject);
@@ -225,8 +225,8 @@ export class PhoneComponent implements OnInit {
   resetForm(): void {
     this.myForm.setValue({
       'IMEI': null,
-      'owner': null,
-      'status': null
+      'status': null,
+      'owner': null
       });
   }
 

@@ -86,7 +86,7 @@ describe('MemberComponent', () => {
 
     // mock form to be passed to the update function
     let mockForm = new FormGroup({
-      email: new FormControl('id')
+      ownerId: new FormControl('id')
     });
     
     component.updateParticipant(mockForm);

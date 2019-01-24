@@ -31,13 +31,13 @@ describe('Starting tests for identiphone-app', function() {
     })
   });
 
-  it('network-name should be identiphone-network@0.0.3',() => {
+  it('network-name should be identiphone-network@0.0.5-deploy.22',() => {
     element(by.css('.network-name')).getWebElement()
     .then((webElement) => {
       return webElement.getText();
     })
     .then((txt) => {
-      expect(txt).toBe('identiphone-network@0.0.3.bna');
+      expect(txt).toBe('identiphone-network@0.0.5-deploy.22.bna');
     });
   });
 
@@ -71,24 +71,6 @@ describe('Starting tests for identiphone-app', function() {
     });
   
 
-  
-    it('PhoneOwner component should be loadable',() => {
-      page.navigateTo('/PhoneOwner');
-      browser.findElement(by.id('participantName'))
-      .then((participantName) => {
-        return participantName.getText();
-      })
-      .then((txt) => {
-        expect(txt).toBe('PhoneOwner');
-      });
-    });
-
-    it('PhoneOwner table should have 2 columns',() => {
-      page.navigateTo('/PhoneOwner');
-      element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(2); // Addition of 1 for 'Action' column
-      });
-    });
   
     it('Member component should be loadable',() => {
       page.navigateTo('/Member');

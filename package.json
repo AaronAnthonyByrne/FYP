@@ -1,6 +1,6 @@
 {
   "engines": {
-    "composer": "^0.20.4"
+    "composer": "^0.19.19"
   },
   "name": "identiphone-network",
   "version": "0.0.5-deploy.22",
@@ -19,12 +19,12 @@
   "email": "c15709609@mydit.ie",
   "license": "Apache-2.0",
   "devDependencies": {
-    "composer-admin": "^0.20.4",
-    "composer-cli": "^0.20.4",
-    "composer-client": "^0.20.4",
-    "composer-common": "^0.20.4",
-    "composer-connector-embedded": "^0.20.4",
-    "composer-cucumber-steps": "^0.20.4",
+    "composer-admin": "^0.19.19",
+    "composer-cli": "^0.19.19",
+    "composer-client": "^0.19.19",
+    "composer-common": "^0.19.19",
+    "composer-connector-embedded": "^0.19.19",
+    "composer-cucumber-steps": "^0.19.19",
     "chai": "latest",
     "chai-as-promised": "latest",
     "cucumber": "^2.2.0",

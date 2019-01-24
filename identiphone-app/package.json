@@ -1,9 +1,9 @@
 {
   "name": "identiphone-app",
   "description": "Hyperledger Composer Angular project",
-  "version": "0.0.4",
-  "author": "Aaron Byrne",
-  "email": "C15709609@mydit.ie",
+  "version": "0.0.1",
+  "author": "Aaron Anthony Byrne",
+  "email": "c15709609@mydit.ie",
   "license": "Apache-2.0",
   "engines": {
     "node": ">=8",

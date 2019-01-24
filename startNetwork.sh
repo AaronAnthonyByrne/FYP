@@ -2,7 +2,9 @@
 
 export FABRIC_VERSION=hlfv11
 
-../fabric-dev-servers/startFabric.sh
+~/fabric-dev-servers/startFabric.sh
+~/fabric-dev-servers/createPeerAdminCard.sh
+
 
 composer archive create -t dir -n .
 

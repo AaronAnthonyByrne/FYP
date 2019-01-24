@@ -35,7 +35,7 @@ export class MemberComponent implements OnInit {
   email = new FormControl('', Validators.required);
   firstName = new FormControl('', Validators.required);
   lastName = new FormControl('', Validators.required);
-  phones = new FormControl('', Validators.required);
+  ownerId = new FormControl('', Validators.required);
 
 
   constructor(public serviceMember: MemberService, fb: FormBuilder) {
@@ -43,7 +43,7 @@ export class MemberComponent implements OnInit {
       email: this.email,
       firstName: this.firstName,
       lastName: this.lastName,
-      phones: this.phones
+      ownerId: this.ownerId
     });
   };
 
@@ -103,14 +103,14 @@ export class MemberComponent implements OnInit {
       'email': this.email.value,
       'firstName': this.firstName.value,
       'lastName': this.lastName.value,
-      'phones': this.phones.value
+      'ownerId': this.ownerId.value
     };
 
     this.myForm.setValue({
       'email': null,
       'firstName': null,
       'lastName': null,
-      'phones': null
+      'ownerId': null
     });
 
     return this.serviceMember.addParticipant(this.participant)
@@ -121,7 +121,7 @@ export class MemberComponent implements OnInit {
         'email': null,
         'firstName': null,
         'lastName': null,
-        'phones': null
+        'ownerId': null
       });
       this.loadAll(); 
     })
@@ -138,12 +138,12 @@ export class MemberComponent implements OnInit {
    updateParticipant(form: any): Promise<any> {
     this.participant = {
       $class: 'org.example.mynetwork.Member',
+      'email': this.email.value,
       'firstName': this.firstName.value,
       'lastName': this.lastName.value,
-      'phones': this.phones.value
     };
 
-    return this.serviceMember.updateParticipant(form.get('email').value, this.participant)
+    return this.serviceMember.updateParticipant(form.get('ownerId').value, this.participant)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -194,7 +194,7 @@ export class MemberComponent implements OnInit {
         'email': null,
         'firstName': null,
         'lastName': null,
-        'phones': null
+        'ownerId': null
       };
 
       if (result.email) {
@@ -215,10 +215,10 @@ export class MemberComponent implements OnInit {
         formObject.lastName = null;
       }
 
-      if (result.phones) {
-        formObject.phones = result.phones;
+      if (result.ownerId) {
+        formObject.ownerId = result.ownerId;
       } else {
-        formObject.phones = null;
+        formObject.ownerId = null;
       }
 
       this.myForm.setValue(formObject);
@@ -240,7 +240,7 @@ export class MemberComponent implements OnInit {
       'email': null,
       'firstName': null,
       'lastName': null,
-      'phones': null
+      'ownerId': null
     });
   }
 }

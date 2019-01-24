@@ -86,7 +86,7 @@ describe('RetailerComponent', () => {
 
     // mock form to be passed to the update function
     let mockForm = new FormGroup({
-      retailerId: new FormControl('id')
+      ownerId: new FormControl('id')
     });
     
     component.updateParticipant(mockForm);

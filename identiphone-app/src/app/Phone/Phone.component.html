@@ -37,9 +37,9 @@
 
             
               <div class="form-group text-left">
-                <label for="owner">owner</label>
+                <label for="status">status</label>
                 
-                    <textarea formControlName="owner" class="form-control" rows="3"></textarea>
+                  <input formControlName="status" type="text" class="form-control">
                 
               </div>
             
@@ -47,9 +47,9 @@
 
             
               <div class="form-group text-left">
-                <label for="status">status</label>
+                <label for="owner">owner</label>
                 
-                  <input formControlName="status" type="text" class="form-control">
+                    <textarea formControlName="owner" class="form-control" rows="3"></textarea>
                 
               </div>
             
@@ -91,21 +91,21 @@
             </div>
           
             <div class="form-group text-left">
+              <label for="status">status</label>
+              
+              
+                <input [ngModel]="status"formControlName="status" type="text" class="form-control">
+              
+
+            </div>
+          
+            <div class="form-group text-left">
               <label for="owner">owner</label>
               
               
                 
                   <textarea [ngModel]="owner" formControlName="owner" class="form-control" rows="3"></textarea>
                 
-              
-
-            </div>
-          
-            <div class="form-group text-left">
-              <label for="status">status</label>
-              
-              
-                <input [ngModel]="status"formControlName="status" type="text" class="form-control">
               
 
             </div>
@@ -183,9 +183,9 @@
             
                 <th class="info">IMEI</th>
             
-                <th class="info">owner</th>
-            
                 <th class="info">status</th>
+            
+                <th class="info">owner</th>
             
               <th class="info-actions">Actions</th>
           </tr>
@@ -196,9 +196,9 @@
             
                 <td class="asset-properties">{{asset.IMEI}}</td>
             
-                <td class="asset-properties">{{asset.owner}}</td>
-            
                 <td class="asset-properties">{{asset.status}}</td>
+            
+                <td class="asset-properties">{{asset.owner}}</td>
             
             <td>
               <button (click)="getForm(asset.IMEI);" type="button" class="btn btn-update" data-toggle="modal" data-target="#updateAssetModal">

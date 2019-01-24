@@ -34,14 +34,14 @@ export class RecyclerComponent implements OnInit {
 
   recyclerId = new FormControl('', Validators.required);
   recyclerName = new FormControl('', Validators.required);
-  phones = new FormControl('', Validators.required);
+  ownerId = new FormControl('', Validators.required);
 
 
   constructor(public serviceRecycler: RecyclerService, fb: FormBuilder) {
     this.myForm = fb.group({
       recyclerId: this.recyclerId,
       recyclerName: this.recyclerName,
-      phones: this.phones
+      ownerId: this.ownerId
     });
   };
 
@@ -100,13 +100,13 @@ export class RecyclerComponent implements OnInit {
       $class: 'org.example.mynetwork.Recycler',
       'recyclerId': this.recyclerId.value,
       'recyclerName': this.recyclerName.value,
-      'phones': this.phones.value
+      'ownerId': this.ownerId.value
     };
 
     this.myForm.setValue({
       'recyclerId': null,
       'recyclerName': null,
-      'phones': null
+      'ownerId': null
     });
 
     return this.serviceRecycler.addParticipant(this.participant)
@@ -116,7 +116,7 @@ export class RecyclerComponent implements OnInit {
       this.myForm.setValue({
         'recyclerId': null,
         'recyclerName': null,
-        'phones': null
+        'ownerId': null
       });
       this.loadAll(); 
     })
@@ -133,11 +133,11 @@ export class RecyclerComponent implements OnInit {
    updateParticipant(form: any): Promise<any> {
     this.participant = {
       $class: 'org.example.mynetwork.Recycler',
+      'recyclerId': this.recyclerId.value,
       'recyclerName': this.recyclerName.value,
-      'phones': this.phones.value
     };
 
-    return this.serviceRecycler.updateParticipant(form.get('recyclerId').value, this.participant)
+    return this.serviceRecycler.updateParticipant(form.get('ownerId').value, this.participant)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -187,7 +187,7 @@ export class RecyclerComponent implements OnInit {
       const formObject = {
         'recyclerId': null,
         'recyclerName': null,
-        'phones': null
+        'ownerId': null
       };
 
       if (result.recyclerId) {
@@ -202,10 +202,10 @@ export class RecyclerComponent implements OnInit {
         formObject.recyclerName = null;
       }
 
-      if (result.phones) {
-        formObject.phones = result.phones;
+      if (result.ownerId) {
+        formObject.ownerId = result.ownerId;
       } else {
-        formObject.phones = null;
+        formObject.ownerId = null;
       }
 
       this.myForm.setValue(formObject);
@@ -226,7 +226,7 @@ export class RecyclerComponent implements OnInit {
     this.myForm.setValue({
       'recyclerId': null,
       'recyclerName': null,
-      'phones': null
+      'ownerId': null
     });
   }
 }
