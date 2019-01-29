@@ -27,7 +27,7 @@ composer transaction submit -c admin@identiphone-network -d '{
   "resources": [{
       "$class": "org.example.mynetwork.Phone",
       "IMEI": "10155026145231",  
-      "status": "Owned",
+      "phoneStatus": "OWNED",
       "owner": "103"
       }]
 }'
@@ -38,7 +38,7 @@ composer transaction submit -c admin@identiphone-network -d '{
   "resources": [{
       "$class": "org.example.mynetwork.Phone",
       "IMEI": "10255026145231",
-      "status": "Owned",
+      "phoneStatus": "OWNED",
       "owner": "102"
       }]
 }'
@@ -49,7 +49,7 @@ composer transaction submit -c admin@identiphone-network -d '{
   "resources": [{
       "$class": "org.example.mynetwork.Phone",
       "IMEI": "10355026145231",
-      "status": "Owned",
+      "phoneStatus": "OWNED",
       "owner": "103"
       }]
 }'

@@ -1,0 +1,12 @@
+*** Update the business card ***
+
+Open the package.json file and update the version.
+
+Run:
+composer archive create -t dir -n .
+
+composer network install -a NETWORK-FILENAME.bna -c peeradmin@hlfv1
+
+composer network upgrade -c peeradmin@hlfv1 -n NETWORK-NAME -V NETWORK-VERSION
+
+
