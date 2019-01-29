@@ -31,13 +31,13 @@ describe('Starting tests for identiphone-app', function() {
     })
   });
 
-  it('network-name should be identiphone-network@0.0.5-deploy.22',() => {
+  it('network-name should be identiphone-network@0.0.8',() => {
     element(by.css('.network-name')).getWebElement()
     .then((webElement) => {
       return webElement.getText();
     })
     .then((txt) => {
-      expect(txt).toBe('identiphone-network@0.0.5-deploy.22.bna');
+      expect(txt).toBe('identiphone-network@0.0.8.bna');
     });
   });
 

@@ -5,8 +5,10 @@ Open the package.json file and update the version.
 Run:
 composer archive create -t dir -n .
 
-composer network install -a NETWORK-FILENAME.bna -c peeradmin@hlfv1
+composer network install -a identiphone-network@0.0.8.bna -c PeerAdmin@hlfv1
 
-composer network upgrade -c peeradmin@hlfv1 -n NETWORK-NAME -V NETWORK-VERSION
+composer network upgrade -c PeerAdmin@hlfv1 -n identiphone-network -V 0.0.8
+
+composer-rest-server -c admin@identiphone-network -n never -u true -w true
 
 

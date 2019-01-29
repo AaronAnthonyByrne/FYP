@@ -33,7 +33,6 @@ export class markAsStolenComponent implements OnInit {
   private errorMessage;
 
   phone = new FormControl('', Validators.required);
-  status = new FormControl('', Validators.required);
   transactionId = new FormControl('', Validators.required);
   timestamp = new FormControl('', Validators.required);
 
@@ -41,7 +40,6 @@ export class markAsStolenComponent implements OnInit {
   constructor(private servicemarkAsStolen: markAsStolenService, fb: FormBuilder) {
     this.myForm = fb.group({
       phone: this.phone,
-      status: this.status,
       transactionId: this.transactionId,
       timestamp: this.timestamp
     });
@@ -101,15 +99,13 @@ export class markAsStolenComponent implements OnInit {
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.example.mynetwork.markAsStolen',
-      'phone': this.phone.value,
-      'status': this.status.value,
+      'phone': 'org.example.mynetwork.Phone#'+this.phone.value,
       'transactionId': this.transactionId.value,
       'timestamp': this.timestamp.value
     };
 
     this.myForm.setValue({
       'phone': null,
-      'status': null,
       'transactionId': null,
       'timestamp': null
     });
@@ -120,7 +116,6 @@ export class markAsStolenComponent implements OnInit {
       this.errorMessage = null;
       this.myForm.setValue({
         'phone': null,
-        'status': null,
         'transactionId': null,
         'timestamp': null
       });
@@ -137,8 +132,7 @@ export class markAsStolenComponent implements OnInit {
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.example.mynetwork.markAsStolen',
-      'phone': this.phone.value,
-      'status': this.status.value,
+      'phone': 'org.example.mynetwork.Phone#'+this.phone.value,
       'timestamp': this.timestamp.value
     };
 
@@ -188,7 +182,6 @@ export class markAsStolenComponent implements OnInit {
       this.errorMessage = null;
       const formObject = {
         'phone': null,
-        'status': null,
         'transactionId': null,
         'timestamp': null
       };
@@ -197,12 +190,6 @@ export class markAsStolenComponent implements OnInit {
         formObject.phone = result.phone;
       } else {
         formObject.phone = null;
-      }
-
-      if (result.status) {
-        formObject.status = result.status;
-      } else {
-        formObject.status = null;
       }
 
       if (result.transactionId) {
@@ -234,7 +221,6 @@ export class markAsStolenComponent implements OnInit {
   resetForm(): void {
     this.myForm.setValue({
       'phone': null,
-      'status': null,
       'transactionId': null,
       'timestamp': null
     });

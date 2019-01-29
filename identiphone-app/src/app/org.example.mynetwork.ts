@@ -6,6 +6,11 @@ import {Event} from './org.hyperledger.composer.system';
    export abstract class Owner extends Participant {
       ownerId: string;
    }
+   export enum PhoneStatus {
+      UNSOLD,
+      OWNED,
+      STOLEN,
+   }
    export class Member extends Owner {
       email: string;
       firstName: string;
@@ -30,7 +35,7 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class Phone extends Asset {
       IMEI: string;
-      status: string;
+      phoneStatus: PhoneStatus;
       owner: Owner;
    }
    export class ChangeOwner extends Transaction {
@@ -39,7 +44,6 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class markAsStolen extends Transaction {
       phone: Phone;
-      status: string;
    }
    export class PhoneExhange extends Event {
       phone: Phone;
@@ -48,7 +52,7 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class stolen extends Event {
       phone: Phone;
-      oldStatus: string;
-      newStatus: string;
+      oldStatus: PhoneStatus;
+      newStatus: PhoneStatus;
    }
 // }

@@ -33,13 +33,13 @@ export class PhoneComponent implements OnInit {
   private errorMessage;
 
   IMEI = new FormControl('', Validators.required);
-  status = new FormControl('', Validators.required);
+  phoneStatus = new FormControl('', Validators.required);
   owner = new FormControl('', Validators.required);
 
   constructor(public servicePhone: PhoneService, fb: FormBuilder) {
     this.myForm = fb.group({
       IMEI: this.IMEI,
-      status: this.status,
+      status: this.phoneStatus,
       owner: this.owner
     });
   };
@@ -99,13 +99,13 @@ export class PhoneComponent implements OnInit {
     this.asset = {
       $class: 'org.example.mynetwork.Phone',
       'IMEI': this.IMEI.value,
-      'status': this.status.value,
+      'phoneStatus': this.phoneStatus.value,
       'owner': this.owner.value
     };
 
     this.myForm.setValue({
       'IMEI': null,
-      'status': null,
+      'phoneStatus': null,
       'owner': null
     });
 
@@ -115,7 +115,7 @@ export class PhoneComponent implements OnInit {
       this.errorMessage = null;
       this.myForm.setValue({
         'IMEI': null,
-        'status': null,
+        'phoneStatus': null,
         'owner': null
       });
       this.loadAll();
@@ -133,7 +133,7 @@ export class PhoneComponent implements OnInit {
   updateAsset(form: any): Promise<any> {
     this.asset = {
       $class: 'org.example.mynetwork.Phone',
-      'status': this.status.value,
+      'phoneStatus': this.phoneStatus.value,
       'owner': this.owner.value
     };
 
@@ -186,7 +186,7 @@ export class PhoneComponent implements OnInit {
       this.errorMessage = null;
       const formObject = {
         'IMEI': null,
-        'status': null,
+        'phoneStatus': null,
         'owner': null
       };
 
@@ -196,10 +196,10 @@ export class PhoneComponent implements OnInit {
         formObject.IMEI = null;
       }
 
-      if (result.status) {
-        formObject.status = result.status;
+      if (result.phoneStatus) {
+        formObject.phoneStatus = result.phoneStatus;
       } else {
-        formObject.status = null;
+        formObject.phoneStatus = null;
       }
 
       if (result.owner) {
@@ -225,7 +225,7 @@ export class PhoneComponent implements OnInit {
   resetForm(): void {
     this.myForm.setValue({
       'IMEI': null,
-      'status': null,
+      'phoneStatus': null,
       'owner': null
       });
   }
