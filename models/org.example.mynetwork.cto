@@ -3,6 +3,11 @@ namespace org.example.mynetwork
 abstract participant Owner identified by ownerId{
 	o String ownerId
 }
+enum PhoneStatus {
+  o UNSOLD
+  o OWNED
+  o STOLEN
+}
 participant Member extends Owner{
   o String email
   o String firstName
@@ -30,7 +35,7 @@ participant LawEnfrocment identified by branchId{
 
 asset Phone identified by IMEI {
   o String IMEI //insert regex to make sure enough digits are entered
-  o String status
+  o PhoneStatus phoneStatus
   --> Owner owner
 }
 
@@ -41,7 +46,7 @@ transaction ChangeOwner {
 
 transaction markAsStolen {
   --> Phone phone
-  o String status
+  o PhoneStatus status
 }
 event PhoneExhange {
   --> Phone phone
@@ -51,8 +56,8 @@ event PhoneExhange {
 
 event stolen {
   --> Phone phone
-  o String oldStatus
-  o String newStatus
+  o PhoneStatus oldStatus
+  o PhoneStatus newStatus
 }
 
 
