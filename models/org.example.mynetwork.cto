@@ -40,23 +40,22 @@ asset Phone identified by IMEI {
 }
 
 transaction ChangeOwner {
-  --> Phone imei
+  --> Phone phone
   --> Owner newOwner
 }
 
 transaction markAsStolen {
-  --> Phone imei
-  --> Phone phoneStatus
+  --> Phone phone
 }
 
 event PhoneExhange {
-  --> Phone imei
+  --> Phone phone
   --> Owner oldPhoneOwner
   --> Owner newPhoneOwner
 }
 
 event stolen {
-  --> Phone imei
+  --> Phone phone
   o PhoneStatus oldStatus
   o PhoneStatus newStatus
 }
