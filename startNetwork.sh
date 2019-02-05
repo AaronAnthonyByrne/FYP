@@ -17,3 +17,4 @@ composer card import --file networkadmin.card
 composer network ping --card admin@identiphone-network
 
 composer-rest-server -c admin@identiphone-network -n never -u true -w true
+composer network install --card PeerAdmin@hlfv1 --archiveFile identiphone-network@0.0.8.bna
