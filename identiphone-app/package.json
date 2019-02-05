@@ -15,6 +15,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build",
+    "pages": "ng build --prod --base-href “https://github.com/AaronAnthonyByrne/identiphone-app”",
     "prepack": "npm run build",
     "start": "ng serve --proxy-config proxy.conf.js --host 0.0.0.0",
     "lint": "tslint \"src/**/*.ts\"",
