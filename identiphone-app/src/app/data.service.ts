@@ -25,15 +25,18 @@ export class DataService<Type> {
     private headers: Headers;
 
     constructor(private http: Http) {
-        this.actionUrl = '/api/';
+        this.actionUrl = '35.204.114.96:3000/api/';
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');
     }
 
     public getAll(ns: string): Observable<Type[]> {
-        console.log('GetAll ' + ns + ' to ' + this.actionUrl + ns);
-        return this.http.get(`${this.actionUrl}${ns}`)
+        console.log('GetAll ' + ns + ' from ' + this.actionUrl + ns);
+        console.log(`${this.actionUrl}${ns}`);
+        let combinedURL = `${this.actionUrl}${ns}`
+        console.log(combinedURL);
+        return this.http.get('http://35.204.114.96:3000/api/Phone')
           .map(this.extractData)
           .catch(this.handleError);
     }
@@ -84,6 +87,7 @@ export class DataService<Type> {
     }
 
     private extractData(res: Response): any {
+        console.log("HERE I AM");
         return res.json();
     }
 

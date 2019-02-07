@@ -39,7 +39,7 @@ export class PhoneComponent implements OnInit {
   constructor(public servicePhone: PhoneService, fb: FormBuilder) {
     this.myForm = fb.group({
       IMEI: this.IMEI,
-      status: this.phoneStatus,
+      phoneStatus: this.phoneStatus,
       owner: this.owner
     });
   };

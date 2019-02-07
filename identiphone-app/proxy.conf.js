@@ -28,7 +28,7 @@ function getTarget() {
 }
 
 const target = getTarget();
-
+console.log("OUTPUT THE TARGET IN prox.conf: "+target);
 module.exports = [{
     context: ['/auth', '/api'],
     target,
