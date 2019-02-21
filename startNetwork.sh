@@ -16,4 +16,4 @@ composer card import --file networkadmin.card
 
 composer network ping --card admin@identiphone-network
 
-composer-rest-server -c admin@identiphone-network -n never -u true -w true
+composer-rest-server -c admin@identiphone-network -t -n never -u true -w true
