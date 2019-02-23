@@ -1,0 +1,14 @@
+*** Update the business card ***
+
+Open the package.json file and update the version.
+
+Run:
+composer archive create -t dir -n .
+
+composer network install -a identiphone-network@0.0.8.bna -c PeerAdmin@hlfv1
+
+composer network upgrade -c PeerAdmin@hlfv1 -n identiphone-network -V 0.0.8
+
+composer-rest-server -c admin@identiphone-network -n never -u true -w true
+
+

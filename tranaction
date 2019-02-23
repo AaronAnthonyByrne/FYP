@@ -1,5 +1,0 @@
-{
-  "$class": "org.example.mynetwork.ChangeOwner",
-  "phone": "org.example.mynetwork.Phone#10155026145231",
-  "newOwner": "org.example.mynetwork.Member#101"
-}
