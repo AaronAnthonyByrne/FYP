@@ -1,0 +1,9 @@
+{
+	"version": 1,
+    	"userName": "aaron",
+    	"description": "aaron's identity for basic-sample-network",
+   	"businessNetwork": "identiphone-network",
+    	"enrollmentSecret": "UserSecret",
+    	"roles": [
+    	]
+}

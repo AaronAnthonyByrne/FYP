@@ -9,11 +9,10 @@ export COMPOSER_PROVIDERS='{
     "clientSecret": "7331803ca9f7d960a04e7d46cc01c6f40da40347",
     "authPath": "/auth/github",
     "callbackURL": "/auth/github/callback",
-    "successRedirect": "/",
+    "successRedirect": "https://aaronanthonybyrne.github.io/identiphone-app/?loggedIn=true",
     "failureRedirect": "/"
   }
 }'
-
 ~/fabric-dev-servers/startFabric.sh
 ~/fabric-dev-servers/createPeerAdminCard.sh
 
@@ -28,4 +27,4 @@ composer card import --file networkadmin.card
 
 composer network ping --card admin@identiphone-network
 
-composer-rest-server -c admin@identiphone-network -t -a true -n never -u true -w true
+composer-rest-server -c admin@identiphone-network -t -n never -u true -w true
