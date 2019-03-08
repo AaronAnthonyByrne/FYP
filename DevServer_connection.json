@@ -19,10 +19,10 @@
     "channels": {
         "composerchannel": {
             "orderers": [
-                "orderer.identiphone.com"
+                "orderer.example.com"
             ],
             "peers": {
-                "peer0.org1.identiphone.com": {}
+                "peer0.org1.example.com": {}
             }
         }
     },
@@ -30,27 +30,27 @@
         "Org1": {
             "mspid": "Org1MSP",
             "peers": [
-                "peer0.org1.identiphone.com"
+                "peer0.org1.example.com"
             ],
             "certificateAuthorities": [
-                "ca.org1.identiphone.com"
+                "ca.org1.example.com"
             ]
         }
     },
     "orderers": {
-        "orderer.identiphone.com": {
+        "orderer.example.com": {
             "url": "grpc://localhost:7050"
         }
     },
     "peers": {
-        "peer0.org1.identiphone.com": {
+        "peer0.org1.example.com": {
             "url": "grpc://localhost:7051"
         }
     },
     "certificateAuthorities": {
-        "ca.org1.identiphone.com": {
+        "ca.org1.example.com": {
             "url": "http://localhost:7054",
-            "caName": "ca.org1.identiphone.com"
+            "caName": "ca.org1.example.com"
         }
     }
 }
