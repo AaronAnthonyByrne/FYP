@@ -32,19 +32,13 @@
     height: 100%;
     font-size: 32px;
     letter-spacing: 0.28px;
-    padding: 0px;
+    padding: 5px;
     margin-left: 0px !important;
     color: #000;
 }
 
 .navbar-brand:hover {
     color: #000;
-}
-
-.network-name {
-    font-size: 12px;
-    letter-spacing: 0.28px;
-    color: #5D636A;
 }
 
 .navbar-nav > li {
@@ -96,7 +90,7 @@
     -moz-transition: all 0.3s;
     -ms-transition: all 0.3s;
     -o-transition: all 0.3s;
-    transition: all 0.3s;
+    transition: all 0.5s;
 }
 
 .dropdown-menu:hover {
@@ -141,4 +135,17 @@
     height: auto;
     max-height: 200px;
     overflow-x: hidden;
+}
+.btn-primary {
+    background: #3D9970;
+    border-radius: 4px;
+    border: 0px;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    line-height: 10px;
+    height: 40px;
+    width: 153px;
+    grid-column-start: 5;
+     grid-column-end: 6;
 }

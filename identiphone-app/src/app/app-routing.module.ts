@@ -24,7 +24,6 @@ import { RetailerComponent } from './Retailer/Retailer.component';
 import { RecyclerComponent } from './Recycler/Recycler.component';
 import { NetworkProviderComponent } from './NetworkProvider/NetworkProvider.component';
 import { LawEnfrocmentComponent } from './LawEnfrocment/LawEnfrocment.component';
-
 import { ChangeOwnerComponent } from './ChangeOwner/ChangeOwner.component';
 import { markAsStolenComponent } from './markAsStolen/markAsStolen.component';
 

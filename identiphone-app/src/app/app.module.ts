@@ -20,15 +20,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { DataService } from './data.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-
 import { PhoneComponent } from './Phone/Phone.component';
-
 import { MemberComponent } from './Member/Member.component';
 import { RetailerComponent } from './Retailer/Retailer.component';
 import { RecyclerComponent } from './Recycler/Recycler.component';
 import { NetworkProviderComponent } from './NetworkProvider/NetworkProvider.component';
 import { LawEnfrocmentComponent } from './LawEnfrocment/LawEnfrocment.component';
-
 import { ChangeOwnerComponent } from './ChangeOwner/ChangeOwner.component';
 import { markAsStolenComponent } from './markAsStolen/markAsStolen.component';
 
@@ -43,7 +40,8 @@ import { markAsStolenComponent } from './markAsStolen/markAsStolen.component';
     NetworkProviderComponent,
     LawEnfrocmentComponent,
     ChangeOwnerComponent,
-    markAsStolenComponent
+    markAsStolenComponent,
+
   ],
   imports: [
     BrowserModule,

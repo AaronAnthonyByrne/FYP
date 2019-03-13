@@ -11,6 +11,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-body {
-    background-color: red;
+ .btn-primary {
+    background: #3D9970;
+    border-radius: 4px;
+    border: 0px;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    line-height: 10px;
+    height: 40px;
+    width: 153px;
+    grid-column-start: 5;
+     grid-column-end: 6;
 }
