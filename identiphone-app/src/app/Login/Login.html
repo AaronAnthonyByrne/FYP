@@ -1,0 +1,27 @@
+<div class="modal fade" id="loginMember" tabindex="-1" role="dialog" aria-labelledby="loginMemberModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="loginMemberModalLabel">Login</h4>
+				<p class="modal-intro">Enter the required values below.</p>
+			</div>
+			<form [formGroup]="myForm">
+				<div class="modal-body">
+					<div class="form-group text-left">
+						<label for="email">Email</label>
+						<input formControlName="email" type="text" class="form-control">
+					</div>
+					<div class="form-group text-left">
+						<label for="firstName">Password</label>
+						<input formControlName="password" type="password" class="form-control">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button (click)="attemptLogin(myForm);" type="submit" class="btn btn-success" data-dismiss="modal">Confirm</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

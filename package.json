@@ -3,7 +3,7 @@
     "composer": "^0.19.19"
   },
   "name": "identiphone-network",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "To enable to securly buy and sell phones",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/tutorial-network.bna",

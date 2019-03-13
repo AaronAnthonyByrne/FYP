@@ -28,6 +28,7 @@ import { NetworkProviderComponent } from './NetworkProvider/NetworkProvider.comp
 import { LawEnfrocmentComponent } from './LawEnfrocment/LawEnfrocment.component';
 import { ChangeOwnerComponent } from './ChangeOwner/ChangeOwner.component';
 import { markAsStolenComponent } from './markAsStolen/markAsStolen.component';
+import { LoginComponent } from './Login/Login.component';
 
   @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { markAsStolenComponent } from './markAsStolen/markAsStolen.component';
     LawEnfrocmentComponent,
     ChangeOwnerComponent,
     markAsStolenComponent,
+    LoginComponent
 
   ],
   imports: [

@@ -14,11 +14,9 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { LoginComponent } from './Login/Login.component';
 import { HomeComponent } from './home/home.component';
-
 import { PhoneComponent } from './Phone/Phone.component';
-
 import { MemberComponent } from './Member/Member.component';
 import { RetailerComponent } from './Retailer/Retailer.component';
 import { RecyclerComponent } from './Recycler/Recycler.component';
@@ -27,8 +25,10 @@ import { LawEnfrocmentComponent } from './LawEnfrocment/LawEnfrocment.component'
 import { ChangeOwnerComponent } from './ChangeOwner/ChangeOwner.component';
 import { markAsStolenComponent } from './markAsStolen/markAsStolen.component';
 
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'Login', component: LoginComponent},
   { path: 'Phone', component: PhoneComponent },
   { path: 'Member', component: MemberComponent },
   { path: 'Retailer', component: RetailerComponent },
