@@ -1,11 +1,16 @@
 #!/bin/bash
 composer participant add -c admin@identiphone-network -d '{
   "$class": "org.example.mynetwork.Member",
-  "email": "aaron.byrne@gmail.com",
+  "email": "90aaronbyrne@gmail.com",
   "firstName": "aaron",
   "lastName": "byrne",
   "ownerId": "101"
 }'
+
+composer identity issue -c admin@identiphone-network -f 90aaronbyrne@gmail.com.card -u 90aaronbyrne@gmail.com -a "resource:org.example.mynetwork.Member#90aaronbyrne@gmail.coeatr"
+
+composer card import -f 90aaronbyne@gmail.com.card
+composer network ping -c consortiumAdmin@identiphone-network
 composer participant add -c admin@identiphone-network -d '{
   "$class": "org.example.mynetwork.Member",
   "email": "emanuel.macroon@gmail.com",

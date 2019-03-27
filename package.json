@@ -1,8 +1,8 @@
 {
+  "name": "identiphone-network",
   "engines": {
     "composer": "^0.19.19"
   },
-  "name": "identiphone-network",
   "version": "0.0.10",
   "description": "To enable to securly buy and sell phones",
   "scripts": {
@@ -36,6 +36,8 @@
   "dependencies": {
     "composer-runtime": "^0.20.7",
     "firebase-admin": "^7.0.0",
+    "loopback-cli": "^5.0.0",
+    "loopback-connector-firestore": "^1.0.7",
     "loopback-connector-mongodb": "^3.9.2",
     "mongod": "^2.0.0",
     "mongodb": "^3.1.13",
