@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ../envvars.txt
+
 ~/fabric-dev-servers/startFabric.sh
 ~/fabric-dev-servers/createPeerAdminCard.sh
 

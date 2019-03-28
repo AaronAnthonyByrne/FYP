@@ -7,10 +7,10 @@ composer participant add -c admin@identiphone-network -d '{
   "ownerId": "101"
 }'
 
-composer identity issue -c admin@identiphone-network -f 90aaronbyrne@gmail.com.card -u 90aaronbyrne@gmail.com -a "resource:org.example.mynetwork.Member#90aaronbyrne@gmail.com"
+composer identity issue -c admin@identiphone-network -f 90aaronbyrne@gmail.com.card -u 90aaronbyrne@gmail.com -a "resource:org.example.mynetwork.Member#101"
 
-composer card import -f 90aaronbyne@gmail.com.card
-composer network ping -c consortiumAdmin@identiphone-network
+composer card import -f 90aaronbyrne@gmail.com.card
+composer network ping -c 90aaronbyrne@gmail.com@identiphone-network
 composer participant add -c admin@identiphone-network -d '{
   "$class": "org.example.mynetwork.Member",
   "email": "emanuel.macroon@gmail.com",
