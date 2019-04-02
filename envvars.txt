@@ -1,0 +1,29 @@
+COMPOSER_CARD=admin@identiphone-network
+COMPOSER_NAMESPACES=never
+COMPOSER_AUTHENTICATION=true
+COMPOSER_MULTIUSER=true
+export COMPOSER_PROVIDERS='{
+    "google": {
+        "provider": "google",
+        "module": "passport-google-oauth2",
+        "clientID": "846834439906-u59uhd70r6dir12jffq3rilso318i733.apps.googleusercontent.com",
+        "clientSecret": "l973GqZSF2mOsovO2_6C-wC2",
+        "authPath": "/auth/google",
+        "callbackURL": "/auth/google/callback",
+        "scope": "https://www.googleapis.com/auth/plus.login",
+        "successRedirect": "/",
+        "failureRedirect": "/"
+    }
+}'
+export COMPOSER_DATASOURCES='{
+    "db": {
+        "name": "db",
+        "connector": "mongodb",
+        "host": "ds119445.mlab.com",
+        "port": 19445,
+        "database": "identiphone",
+        "user": "admin",
+        "password": "adminpassword1",
+        "useNewUrlParser": "true"
+    }
+}'

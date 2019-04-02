@@ -4,8 +4,9 @@
 /tmp
 
 # dependencies
+node_modules
+node_modules/
 /node_modules
-
 # IDEs and editors
 /.idea
 .project
@@ -37,3 +38,6 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+node_modules
+node_modules
+node_modules
