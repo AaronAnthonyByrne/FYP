@@ -14,7 +14,6 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './Login/Login.component';
 import { HomeComponent } from './home/home.component';
 import { PhoneComponent } from './Phone/Phone.component';
 import { MemberComponent } from './Member/Member.component';
@@ -24,11 +23,11 @@ import { NetworkProviderComponent } from './NetworkProvider/NetworkProvider.comp
 import { LawEnfrocmentComponent } from './LawEnfrocment/LawEnfrocment.component';
 import { ChangeOwnerComponent } from './ChangeOwner/ChangeOwner.component';
 import { markAsStolenComponent } from './markAsStolen/markAsStolen.component';
+import { UserComponent } from './User/User.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'Login', component: LoginComponent},
   { path: 'Phone', component: PhoneComponent },
   { path: 'Member', component: MemberComponent },
   { path: 'Retailer', component: RetailerComponent },
@@ -36,6 +35,7 @@ const routes: Routes = [
   { path: 'NetworkProvider', component: NetworkProviderComponent },
   { path: 'LawEnfrocment', component: LawEnfrocmentComponent },
   { path: 'ChangeOwner', component: ChangeOwnerComponent },
+  { path: 'User', component: UserComponent },
   { path: 'markAsStolen', component: markAsStolenComponent },
   { path: '**', redirectTo: '' }
 ];

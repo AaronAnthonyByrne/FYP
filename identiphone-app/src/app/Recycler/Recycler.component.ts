@@ -27,10 +27,10 @@ export class RecyclerComponent implements OnInit {
 
   myForm: FormGroup;
 
-  private allParticipants;
+  public allParticipants;
   private participant;
   private currentId;
-  private errorMessage;
+  public errorMessage;
 
   recyclerId = new FormControl('', Validators.required);
   recyclerName = new FormControl('', Validators.required);

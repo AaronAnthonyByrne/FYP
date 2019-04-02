@@ -27,10 +27,10 @@ export class ChangeOwnerComponent implements OnInit {
 
   myForm: FormGroup;
 
-  private allTransactions;
+  public allTransactions;
   private Transaction;
   private currentId;
-  private errorMessage;
+  public errorMessage;
 
   phone = new FormControl('', Validators.required);
   newOwner = new FormControl('', Validators.required);

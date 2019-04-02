@@ -1,0 +1,11 @@
+export COMPOSER_DATASOURCES='{
+    "db": {
+        "name": "db",
+        "connector": "mongodb",
+        "host": "ds119445.mlab.com",
+        "port": 19445,
+        "database": "identiphone",
+        "user": "admin",
+        "password": "adminpassword1",
+        "useNewUrlParser": "true"
+    }

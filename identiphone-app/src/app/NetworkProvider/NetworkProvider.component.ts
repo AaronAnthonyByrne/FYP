@@ -27,10 +27,10 @@ export class NetworkProviderComponent implements OnInit {
 
   myForm: FormGroup;
 
-  private allParticipants;
+  public allParticipants;
   private participant;
   private currentId;
-  private errorMessage;
+  public errorMessage;
 
   networkId = new FormControl('', Validators.required);
   compnayName = new FormControl('', Validators.required);

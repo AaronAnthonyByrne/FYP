@@ -25,7 +25,7 @@ export class DataService<Type> {
     private headers: Headers;
 
     constructor(private http: Http) {
-        this.actionUrl = 'https://35.204.114.96:3000/api/';
+        this.actionUrl = 'https://35.204.34.37.xip.io:3000/api/';
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');
@@ -35,8 +35,8 @@ export class DataService<Type> {
         console.log('GetAll ' + ns + ' from ' + this.actionUrl + ns);
         console.log(`${this.actionUrl}${ns}`);
         let combinedURL = `${this.actionUrl}${ns}`
-        console.log(combinedURL);
-        return this.http.get(combinedURL)
+        console.log(combinedURL+{withCredentials: true});
+        return this.http.get(combinedURL, {withCredentials: true})
           .map(this.extractData)
           .catch(this.handleError);
     }
@@ -44,7 +44,7 @@ export class DataService<Type> {
     public getSingle(ns: string, id: string): Observable<Type> {
         console.log('GetSingle ' + ns);
 
-        return this.http.get(this.actionUrl + ns + '/' + id + this.resolveSuffix)
+        return this.http.get(this.actionUrl + ns + '/' + id + this.resolveSuffix, {withCredentials: true})
           .map(this.extractData)
           .catch(this.handleError);
     }
@@ -54,7 +54,7 @@ export class DataService<Type> {
         console.log('Add ' + ns);
         console.log('asset', asset);
 
-        return this.http.post(this.actionUrl + ns, asset)
+        return this.http.post(this.actionUrl + ns, asset,{withCredentials: true})
           .map(this.extractData)
           .catch(this.handleError);
     }
@@ -64,7 +64,7 @@ export class DataService<Type> {
         console.log('what is the id?', id);
         console.log('what is the updated item?', itemToUpdate);
         console.log('what is the updated item?', JSON.stringify(itemToUpdate));
-        return this.http.put(`${this.actionUrl}${ns}/${id}`, itemToUpdate)
+        return this.http.put(`${this.actionUrl}${ns}/${id}`, itemToUpdate, {withCredentials: true})
           .map(this.extractData)
           .catch(this.handleError);
     }
@@ -72,7 +72,7 @@ export class DataService<Type> {
     public delete(ns: string, id: string): Observable<Type> {
         console.log('Delete ' + ns);
 
-        return this.http.delete(this.actionUrl + ns + '/' + id)
+        return this.http.delete(this.actionUrl + ns + '/' + id, {withCredentials: true})
           .map(this.extractData)
           .catch(this.handleError);
     }

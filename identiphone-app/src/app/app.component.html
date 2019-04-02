@@ -14,7 +14,7 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <img src="assets/images/logo.png" width="150px" height="150px"/>
+        <a [routerLink]="['']"><img src="assets/images/logo.png" width="150px" height="150px"/></a>
       </div>
       <ul class="nav navbar-nav">
         <li class="dropdown active">
@@ -23,7 +23,7 @@
               <li><a [routerLink]="['/Phone']">Phone</a></li>
             </ul>
         </li>
-        <li class="dropdown active">
+        <!-- <li class="dropdown active">
           <a class="dropdown-toggle" data-toggle="dropdown">Participants</a>
           <ul class="dropdown-menu scrollable-menu">
             <li><a [routerLink]="['/Member']">Member</a></li>
@@ -40,10 +40,12 @@
             <li><a [routerLink]="['/markAsStolen']">markAsStolen</a></li>
           </ul>
         </li>
-       </ul> 
+       </ul>  -->
       <!-- <button class="btn btn-primary btn-margin" *ngIf="!auth.isAuthenticated()" (click)="auth.login()">Log In</button>
       <button class="btn btn-primary btn-margin" *ngIf="auth.isAuthenticated()" (click)="auth.logout()">Log Out</button> -->
+    </ul>
     </div>
+
   </nav>
 
   <router-outlet></router-outlet>

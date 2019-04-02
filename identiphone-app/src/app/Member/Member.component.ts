@@ -27,10 +27,10 @@ export class MemberComponent implements OnInit {
 
   myForm: FormGroup;
 
-  private allParticipants;
+  public allParticipants;
   private participant;
   private currentId;
-  private errorMessage;
+  public errorMessage;
 
   email = new FormControl('', Validators.required);
   firstName = new FormControl('', Validators.required);

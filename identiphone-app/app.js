@@ -21,6 +21,9 @@ const http = require('http');
 const path = require('path');
 const proxy = require('http-proxy-middleware');
 const proxyConfig = require('./proxy.conf.js');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
 
 const app = express();
 const appEnv = cfenv.getAppEnv();
@@ -33,7 +36,9 @@ if (!fs.existsSync(dist)) {
 }
 const static = express.static(dist);
 
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
 app.use(static);
 
 proxyConfig.forEach((element) => {

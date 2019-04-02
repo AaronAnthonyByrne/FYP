@@ -27,10 +27,10 @@ export class markAsStolenComponent implements OnInit {
 
   myForm: FormGroup;
 
-  private allTransactions;
+  public allTransactions;
   private Transaction;
   private currentId;
-  private errorMessage;
+  public errorMessage;
 
   phone = new FormControl('', Validators.required);
   transactionId = new FormControl('', Validators.required);

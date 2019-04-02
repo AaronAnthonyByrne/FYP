@@ -12,17 +12,20 @@
  * limitations under the License.
  */
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import * as mongoose from "mongoose";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-user',
+  templateUrl: './User.component.html',
+  styleUrls: ['./User.component.css']
 })
-export class HomeComponent {
+export class UserComponent {
 
-  constructor(private httpClient: HttpClient) {
+  // mongodb = 'mongodb://admin:adminpassword1@ds119445.mlab.com:19445/identiphone';
+
+  constructor() {
   }
-
+  
 }

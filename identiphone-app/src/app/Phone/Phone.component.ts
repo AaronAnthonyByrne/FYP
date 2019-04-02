@@ -27,10 +27,10 @@ export class PhoneComponent implements OnInit {
 
   myForm: FormGroup;
 
-  private allAssets;
+  public allAssets;
   private asset;
   private currentId;
-  private errorMessage;
+  public errorMessage;
 
   IMEI = new FormControl('', Validators.required);
   phoneStatus = new FormControl('', Validators.required);

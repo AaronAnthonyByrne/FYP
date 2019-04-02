@@ -27,10 +27,10 @@ export class RetailerComponent implements OnInit {
 
   myForm: FormGroup;
 
-  private allParticipants;
+  public allParticipants;
   private participant;
   private currentId;
-  private errorMessage;
+  public errorMessage;
 
   retailerId = new FormControl('', Validators.required);
   retailerName = new FormControl('', Validators.required);

@@ -27,10 +27,10 @@ export class LawEnfrocmentComponent implements OnInit {
 
   myForm: FormGroup;
 
-  private allParticipants;
+  public allParticipants;
   private participant;
   private currentId;
-  private errorMessage;
+  public errorMessage;
 
   branchId = new FormControl('', Validators.required);
   branchName = new FormControl('', Validators.required);
