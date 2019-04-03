@@ -5,7 +5,7 @@
 rule MemberHasFullAccessToTheirAssets {
     description: "Allow all owners full access to their assets"
     participant(p): "org.example.mynetwork.Member"
-    operation: ALL
+    operation: READ,UPDATE
     resource(r): "org.example.mynetwork.Phone"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
@@ -13,17 +13,23 @@ rule MemberHasFullAccessToTheirAssets {
 rule OwnerCanChangeOwnership {
     description: "Allow all participants to submit transactions"
     participant: "org.example.mynetwork.Member"
-    operation: CREATE
-    resource: "org.example.mynetwork.PhoneExhange"
+    operation: ALL
+    resource: "org.example.mynetwork.ChangeOwner"
     action: ALLOW
 }
-//Need to add rule for Checking other users IMEI
-
+//Rule to allow for Checking other users IMEI
+rule AllParticipantsCanViewIMEI {
+  description: "Allow members to get other users IMEI phone status"
+  participant: "org.example.mynetwork.*"
+  operation: READ
+  resource: "org.example.mynetwork.Phone"
+  action: ALLOW
+}
 //Retailer rules
 rule RetailterHasFullAccessToTheirAssets {
     description: "Allow all owners full access to their assets"
     participant(p): "org.example.mynetwork.Retailer"
-    operation: ALL
+    operation: READ,UPDATE
     resource(r): "org.example.mynetwork.Phone"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
@@ -31,15 +37,15 @@ rule RetailterHasFullAccessToTheirAssets {
 rule RetailerCanChangeOwner{
     description: "Allow all Retailers to change the phone ownership"
     participant: "org.example.mynetwork.Retailer"
-    operation: CREATE
-    resource: "org.example.mynetwork.PhoneExhange"
+    operation: ALL
+    resource: "org.example.mynetwork.ChangeOwner"
     action: ALLOW
 }
 //Recycler rules
 rule RecyclerHasFullAccessToTheirAssets {
     description: "Allow all owners full access to their assets"
     participant(p): "org.example.mynetwork.Recycler"
-    operation: ALL
+    operation: READ,UPDATE
     resource(r): "org.example.mynetwork.Phone"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
@@ -47,8 +53,8 @@ rule RecyclerHasFullAccessToTheirAssets {
 rule RecyclerCanChangeOwner{
     description: "Allow Recyclers to check onwership and change onwership if they own the phone"
     participant: "org.example.mynetwork.Recycler"
-    operation: CREATE
-    resource: "org.example.mynetwork.PhoneExhange"
+    operation: ALL
+    resource: "org.example.mynetwork.ChangeOwner"
     action: ALLOW
 }
 //Law Enforcemnt rules
@@ -63,19 +69,10 @@ rule LawEnforcementCanRead {
 rule NetworkProviderRules{
     description: "The Network provider should be able to change the phones status"
     participant: "org.example.mynetwork.NetworkProvider"
-    operation: CREATE
-    resource: "org.example.mynetwork.stolen"
+    operation: ALL
+    resource: "org.example.mynetwork.markAsStolen"
     action: ALLOW
 }
-//Allow all users access to the system
-rule SystemACL {
-  description:  "System ACL to permit all access"
-  participant: "org.hyperledger.composer.system.Participant"
-  operation: ALL
-  resource: "org.hyperledger.composer.system.**"
-  action: ALLOW
-}
-
 //allow the network admin access to the network
 rule NetworkAdminUser {
     description: "Grant business network administrators full access to user resources"
@@ -84,7 +81,6 @@ rule NetworkAdminUser {
     resource: "**"
     action: ALLOW
 }
-
 rule NetworkAdminSystem {
     description: "Grant business network administrators full access to system resources"
     participant: "org.hyperledger.composer.system.NetworkAdmin"

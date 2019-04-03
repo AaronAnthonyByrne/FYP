@@ -34,7 +34,7 @@ participant LawEnfrocment identified by branchId{
 }
 
 asset Phone identified by IMEI {
-  o String IMEI //insert regex to make sure enough digits are entered
+  o String IMEI 
   o PhoneStatus phoneStatus
   --> Owner owner
 }
