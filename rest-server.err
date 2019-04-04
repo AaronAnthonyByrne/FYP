@@ -1,3 +1,8 @@
 Unhandled error for request GET /api/Recycler: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '5d079acceea68b78e964abda3773f1fa4534a3fbd3ae46b06be29556bcc2a33c', has not been registered
     at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
     at <anonymous>
+Treating unknown remoting type "file" as "any"
+Treating unknown remoting type "file" as "any"
+Unhandled error for request GET /api/Phone: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '711f03a5fa5e6fdd80ad09eea594e45cede79d75a210412aecaa4d4435a85b2f', has not been registered
+    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
+    at <anonymous>
