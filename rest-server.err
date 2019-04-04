@@ -1,6 +1,3 @@
-Connection fails: Error: Error trying to ping. Error: No peers available to query. last error was Error: Failed to connect before the deadline
-It will be retried for the next request.
-Error: Error trying to ping. Error: No peers available to query. last error was Error: Failed to connect before the deadline
+Unhandled error for request GET /api/Recycler: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '5d079acceea68b78e964abda3773f1fa4534a3fbd3ae46b06be29556bcc2a33c', has not been registered
     at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
     at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:189:7)

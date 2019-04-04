@@ -27,10 +27,9 @@ composer network ping -c 90aaronbyrne@gmail.com@identiphone-network
 
 #REATILER
 composer participant add -c admin@identiphone-network -d '{
-  "$class": "org.example.mynetwork.Retailerr",
+  "$class": "org.example.mynetwork.Retailer",
+  "retailerName": "Vodafone",
   "email": "c15709609@mydit.ie",
-  "firstName": "emanuel",
-  "lastName": "macroon",
   "ownerId": "102"
 }'
 
@@ -41,10 +40,9 @@ composer network ping -c c15709609@mydit.ie@identiphone-network
 
 # Recycler
 composer participant add -c admin@identiphone-network -d '{
-  "$class": "org.example.mynetwork.Member",
+  "$class": "org.example.mynetwork.Recycler",
+  "recyclerName": "CEX",
   "email": "harry.potter@hogwarts.com",
-  "firstName": "harry",
-  "lastName": "potter",
   "ownerId": "103"
 }'
 
@@ -61,7 +59,7 @@ composer transaction submit -c admin@identiphone-network -d '{
   "resources": [{
       "$class": "org.example.mynetwork.Phone",
       "IMEI": "10155026145231",  
-      "phoneStatus": "OWNED",
+      "phoneStatus": "InShop",
       "owner": "103"
       }]
 }'
@@ -72,7 +70,7 @@ composer transaction submit -c admin@identiphone-network -d '{
   "resources": [{
       "$class": "org.example.mynetwork.Phone",
       "IMEI": "10255026145231",
-      "phoneStatus": "OWNED",
+      "phoneStatus": "InShop",
       "owner": "102"
       }]
 }'
@@ -83,7 +81,7 @@ composer transaction submit -c admin@identiphone-network -d '{
   "resources": [{
       "$class": "org.example.mynetwork.Phone",
       "IMEI": "10355026145231",
-      "phoneStatus": "OWNED",
+      "phoneStatus": "InShop",
       "owner": "103"
       }]
 }'
