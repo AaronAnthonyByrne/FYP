@@ -2,6 +2,8 @@ namespace org.example.mynetwork
 
 abstract participant Owner identified by ownerId{
 	o String ownerId
+	o String email
+
 }
 enum PhoneStatus {
   o InShop
@@ -9,18 +11,15 @@ enum PhoneStatus {
   o Stolen
 }
 participant Member extends Owner{
-  o String email
   o String firstName
   o String lastName
 }
 participant Retailer extends Owner{
   o String retailerName
-  o String email
 }
 
 participant Recycler extends Owner{
   o String recyclerName
-  o String email
 }
 participant NetworkProvider identified by networkId{
   o String networkId
