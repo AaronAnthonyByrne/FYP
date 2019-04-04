@@ -37,9 +37,9 @@
 
             
               <div class="form-group text-left">
-                <label for="status">status</label>
+                <label for="phoneStatus">phoneStatus</label>
                 
-                  <input formControlName="status" type="text" class="form-control">
+                  <input formControlName="phoneStatus" type="text" class="form-control">
                 
               </div>
             
@@ -91,10 +91,10 @@
             </div>
           
             <div class="form-group text-left">
-              <label for="status">status</label>
+              <label for="phoneStatus">phoneStatus</label>
               
               
-                <input [ngModel]="status"formControlName="status" type="text" class="form-control">
+                <input [ngModel]="phoneStatus"formControlName="phoneStatus" type="text" class="form-control">
               
 
             </div>
@@ -196,7 +196,7 @@
             
                 <td class="asset-properties">{{asset.IMEI}}</td>
             
-                <td class="asset-properties">{{asset.status}}</td>
+                <td class="asset-properties">{{asset.phoneStatus}}</td>
             
                 <td class="asset-properties">{{asset.owner}}</td>
             

@@ -1,0 +1,149 @@
+version: '2'
+
+services:
+
+  orderer.identiphone-network.com:
+    container_name: orderer.identiphone-network.com
+    image: hyperledger/fabric-orderer:x86_64-1.0.0-rc1
+    environment:
+      - ORDERER_GENERAL_LOGLEVEL=INFO
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      # enabled TLS
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    command: orderer
+    volumes:
+    - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+    - ../crypto-config/ordererOrganizations/identiphone-network.com/orderers/orderer.identiphone-network.com/msp:/var/hyperledger/orderer/msp
+    - ../crypto-config/ordererOrganizations/identiphone-network.com/orderers/orderer.identiphone-network.com/tls/:/var/hyperledger/orderer/tls
+    - orderer.identiphone-network.com:/var/hyperledger/production/orderer
+    ports:
+      - 7050:7050
+
+  peer0.vodafone.identiphone-network.com:
+    container_name: peer0.vodafone.identiphone-network.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.vodafone.identiphone-network.com
+      - CORE_PEER_ADDRESS=peer0.vodafone.identiphone-network.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.vodafone.identiphone-network.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.vodafone.identiphone-network.com:7051
+      - CORE_PEER_LOCALMSPID=VodafoneMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/vodafone.identiphone-network.com/peers/peer0.vodafone.identiphone-network.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/vodafone.identiphone-network.com/peers/peer0.vodafone.identiphone-network.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.vodafone.identiphone-network.com:/var/hyperledger/production
+    ports:
+      - 7051:7051
+      - 7053:7053
+
+  peer1.vodafone.identiphone-network.com:
+    container_name: peer1.vodafone.identiphone-network.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.vodafone.identiphone-network.com
+      - CORE_PEER_ADDRESS=peer1.vodafone.identiphone-network.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.vodafone.identiphone-network.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.vodafone.identiphone-network.com:7051
+      - CORE_PEER_LOCALMSPID=VodafoneMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/vodafone.identiphone-network.com/peers/peer1.vodafone.identiphone-network.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/vodafone.identiphone-network.com/peers/peer1.vodafone.identiphone-network.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.vodafone.identiphone-network.com:/var/hyperledger/production
+
+    ports:
+      - 8051:7051
+      - 8053:7053
+
+  peer0.eir.identiphone-network.com:
+    container_name: peer0.eir.identiphone-network.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.eir.identiphone-network.com
+      - CORE_PEER_ADDRESS=peer0.eir.identiphone-network.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.eir.identiphone-network.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.eir.identiphone-network.com:7051
+      - CORE_PEER_LOCALMSPID=EirMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/eir.identiphone-network.com/peers/peer0.eir.identiphone-network.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/eir.identiphone-network.com/peers/peer0.eir.identiphone-network.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.eir.identiphone-network.com:/var/hyperledger/production
+    ports:
+      - 9051:7051
+      - 9053:7053
+
+  peer1.eir.identiphone-network.com:
+    container_name: peer1.eir.identiphone-network.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.eir.identiphone-network.com
+      - CORE_PEER_ADDRESS=peer1.eir.identiphone-network.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.eir.identiphone-network.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.eir.identiphone-network.com:7051
+      - CORE_PEER_LOCALMSPID=EirMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/eir.identiphone-network.com/peers/peer1.eir.identiphone-network.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/eir.identiphone-network.com/peers/peer1.eir.identiphone-network.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.eir.identiphone-network.com:/var/hyperledger/production
+    ports:
+      - 10051:7051
+      - 10053:7053
+
+  peer0.secondlife.identiphone-network.com:
+    container_name: peer0.secondlife.identiphone-network.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.secondlife.identiphone-network.com
+      - CORE_PEER_ADDRESS=peer0.secondlife.identiphone-network.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.secondlife.identiphone-network.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.secondlife.identiphone-network.com:7051
+      - CORE_PEER_LOCALMSPID=Second-LifeMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/secondlife.identiphone-network.com/peers/peer0.secondlife.identiphone-network.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/secondlife.identiphone-network.com/peers/peer0.secondlife.identiphone-network.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.secondlife.identiphone-network.com:/var/hyperledger/production
+    ports:
+      - 11051:7051
+      - 11053:7053
+
+  peer1.secondlife.identiphone-network.com:
+    container_name: peer1.secondlife.identiphone-network.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.secondlife.identiphone-network.com
+      - CORE_PEER_ADDRESS=peer1.secondlife.identiphone-network.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.secondlife.identiphone-network.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.secondlife.identiphone-network.com:7051
+      - CORE_PEER_LOCALMSPID=Second-LifeMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/secondlife.identiphone-network.com/peers/peer1.secondlife.identiphone-network.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/secondlife.identiphone-network.com/peers/peer1.secondlife.identiphone-network.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.secondlife.identiphone-network.com:/var/hyperledger/production
+    ports:
+      - 12051:7051
+      - 12053:7053
