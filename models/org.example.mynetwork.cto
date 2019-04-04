@@ -4,9 +4,9 @@ abstract participant Owner identified by ownerId{
 	o String ownerId
 }
 enum PhoneStatus {
-  o UNSOLD
-  o OWNED
-  o STOLEN
+  o InShop
+  o Bought
+  o Stolen
 }
 participant Member extends Owner{
   o String email
@@ -14,17 +14,17 @@ participant Member extends Owner{
   o String lastName
 }
 participant Retailer extends Owner{
-  o String retailerId
   o String retailerName
+  o String email
 }
 
 participant Recycler extends Owner{
-  o String recyclerId
   o String recyclerName
+  o String email
 }
 participant NetworkProvider identified by networkId{
   o String networkId
-  o String compnayName
+  o String companyName
 }
 
 participant LawEnfrocment identified by branchId{
