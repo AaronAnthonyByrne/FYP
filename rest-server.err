@@ -1,46 +1,6 @@
-Unhandled error for request GET /api/Phone: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '8f0bded5faf525eb38c3b6eea2e1417d006ca19a042ee3e4ecfe31242eb964ad', has not been registered
+Connection fails: Error: Error trying to ping. Error: No peers available to query. last error was Error: Failed to connect before the deadline
+It will be retried for the next request.
+Error: Error trying to ping. Error: No peers available to query. last error was Error: Failed to connect before the deadline
     at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
     at <anonymous>
-Unhandled error for request GET /api/Phone: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '8f0bded5faf525eb38c3b6eea2e1417d006ca19a042ee3e4ecfe31242eb964ad', has not been registered
-    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
-    at <anonymous>
-Unhandled error for request GET /api/Phone: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '8f0bded5faf525eb38c3b6eea2e1417d006ca19a042ee3e4ecfe31242eb964ad', has not been registered
-    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
-    at <anonymous>
-Unhandled error for request GET /api/Phone: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '8f0bded5faf525eb38c3b6eea2e1417d006ca19a042ee3e4ecfe31242eb964ad', has not been registered
-    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
-    at <anonymous>
-Treating unknown remoting type "file" as "any"
-Treating unknown remoting type "file" as "any"
-Unhandled error for request GET /api/Phone: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '8f0bded5faf525eb38c3b6eea2e1417d006ca19a042ee3e4ecfe31242eb964ad', has not been registered
-    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
-    at <anonymous>
-Unhandled error for request GET /api/Phone: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '8f0bded5faf525eb38c3b6eea2e1417d006ca19a042ee3e4ecfe31242eb964ad', has not been registered
-    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
-    at <anonymous>
-Unhandled error for request GET /api/system/ping: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '8f0bded5faf525eb38c3b6eea2e1417d006ca19a042ee3e4ecfe31242eb964ad', has not been registered
-    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
-    at <anonymous>
-Unhandled error for request GET /api/system/ping: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '8f0bded5faf525eb38c3b6eea2e1417d006ca19a042ee3e4ecfe31242eb964ad', has not been registered
-    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
-    at <anonymous>
-Treating unknown remoting type "file" as "any"
-Treating unknown remoting type "file" as "any"
-Unhandled error for request GET /api/Phone: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '8f0bded5faf525eb38c3b6eea2e1417d006ca19a042ee3e4ecfe31242eb964ad', has not been registered
-    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
-    at <anonymous>
-Treating unknown remoting type "file" as "any"
-Treating unknown remoting type "file" as "any"
-Unhandled error for request GET /api/Phone: Error: Authorization Required
-    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/loopback/lib/application.js:389:21
-    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/loopback/lib/model.js:353:7
-    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/loopback/common/models/acl.js:464:16
-    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/loopback/node_modules/async/dist/async.js:3888:9
-    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/loopback/node_modules/async/dist/async.js:473:16
-    at iteratorCallback (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/loopback/node_modules/async/dist/async.js:1064:13)
-    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/loopback/node_modules/async/dist/async.js:969:16
-    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/loopback/node_modules/async/dist/async.js:3885:13
-    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/loopback/common/models/acl.js:449:17
-    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/loopback/common/models/role.js:331:21
-    at _combinedTickCallback (internal/process/next_tick.js:132:7)
-    at process._tickCallback (internal/process/next_tick.js:181:9)
+    at process._tickCallback (internal/process/next_tick.js:189:7)
