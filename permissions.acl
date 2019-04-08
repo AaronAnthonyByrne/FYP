@@ -5,7 +5,7 @@
 rule MemberHasFullAccessToTheirAssets {
     description: "Allow all owners full access to their assets"
     participant(p): "org.example.mynetwork.Member"
-    operation: READ,UPDATE
+    operation: ALL
     resource(r): "org.example.mynetwork.Phone"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
@@ -29,7 +29,7 @@ rule AllParticipantsCanViewIMEI {
 rule RetailterHasFullAccessToTheirAssets {
     description: "Allow all owners full access to their assets"
     participant(p): "org.example.mynetwork.Retailer"
-    operation: READ,UPDATE
+    operation: ALL
     resource(r): "org.example.mynetwork.Phone"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
@@ -45,7 +45,7 @@ rule RetailerCanChangeOwner{
 rule RecyclerHasFullAccessToTheirAssets {
     description: "Allow all owners full access to their assets"
     participant(p): "org.example.mynetwork.Recycler"
-    operation: READ,UPDATE
+    operation: ALL
     resource(r): "org.example.mynetwork.Phone"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
