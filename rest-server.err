@@ -4,3 +4,14 @@ Unhandled error for request GET /api/system/ping: Error: Error trying to ping. E
 Unhandled error for request GET /api/Phone: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name '90aaronbyrne@gmail.com' and the identifier '959de8674b0cea3b076c586ec3a2e40da76d98857056a824eef7affca5618051', has not been registered
     at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
     at <anonymous>
+Treating unknown remoting type "file" as "any"
+Treating unknown remoting type "file" as "any"
+Unhandled error for request GET /api/system/ping: Error: transaction returned with failure: AccessException: Participant 'org.example.mynetwork.Member#101' does not have 'READ' access to resource 'org.hyperledger.composer.system.Network#identiphone-network@0.0.19'
+    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/fabric-client/lib/Peer.js:114:16
+    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/grpc/src/client.js:586:7
+Unhandled error for request GET /api/Phone: Error: transaction returned with failure: AccessException: Participant 'org.example.mynetwork.Member#101' does not have 'READ' access to resource 'org.hyperledger.composer.system.Network#identiphone-network@0.0.19'
+    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/fabric-client/lib/Peer.js:114:16
+    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/grpc/src/client.js:586:7
+Unhandled error for request GET /api/Member: Error: transaction returned with failure: AccessException: Participant 'org.example.mynetwork.Member#101' does not have 'READ' access to resource 'org.hyperledger.composer.system.Network#identiphone-network@0.0.19'
+    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/fabric-client/lib/Peer.js:114:16
+    at /home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/grpc/src/client.js:586:7
