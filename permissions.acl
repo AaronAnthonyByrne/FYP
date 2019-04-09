@@ -106,6 +106,8 @@ rule NetworkProviderRules{
     resource: "org.example.mynetwork.markAsStolen"
     action: ALLOW
 }
+
+
 //allow the network admin access to the network
 rule NetworkAdminUser {
     description: "Grant business network administrators full access to user resources"
@@ -120,11 +122,4 @@ rule NetworkAdminSystem {
     operation: ALL
     resource: "org.hyperledger.composer.system.**"
     action: ALLOW
-}
-rule AllowAllReadAccess{
-  description:"allow all read access to the network"
-  participant:"org.example.mynetwork.*"
-  operation:ALL
-  resource:"org.hyperledger.composer.system.**"
-  action: ALLOW
 }
