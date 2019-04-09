@@ -11,8 +11,81 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<div class="container">
-	<div class="jumbotron">
-		<h3>Please wait while we retreive your data....</h3>
+<!-- Table that appears when user clicks add model -->
+<div>
+	Welcome Back, {{user.participant.split('#')[1]}}
+</div>
+<div *ngIf="!admin" class="searchbar">
+	<form>
+		<input type="text" placeholder="Enter IMEI">
+		<button type="submit" class="fa-search">Search</button>
+	</form>
+</div>
+
+<div *ngIf="member || retailer || recycler"class="container">
+	<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+		<strong>Error:</strong> {{errorMessage}}
+	</div>
+	<div class="row">
+		<div class="col-md-9">
+			<h1 class="participant-title" id='assetName'>Phone</h1>
+		</div>
+		<div class="col-md-3">
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table table-responsive">
+				<thead class="thead">
+					<tr class="thead-cols">
+						<th class="info">IMEI</th>
+						<th class="info">Phones Status</th>
+						<th class="info">Owner</th>
+						<th class="info-actions">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let asset of allAssets">
+						<td class="participant-properties">{{asset.IMEI}}</td>
+						<td class="participant-properties">{{asset.phoneStatus}}</td>
+						<td class="participant-properties">{{asset.owner.split('#')[1]}}</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="admin" class="container">
+	<div class="row">
+		<div class="col-md-9">
+			<h1 class="participant-title" id='participantName'>Members</h1>
+		</div>
+		<div class="col-md-3">
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table table-responsive">
+				<thead class="thead">
+					<tr class="thead-cols">
+						<th class="info">Email</th>
+						<th class="info">Name</th>
+						<th class="info">Id</th>
+						<th class="info-actions">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let participant of allParticipants">
+						<td class="participant-properties">{{participant.email}}</td>
+						<td class="participant-properties">{{participant.firstName}} {{participant.lastName}}</td>
+						<td class="participant-properties">{{participant.ownerId}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>

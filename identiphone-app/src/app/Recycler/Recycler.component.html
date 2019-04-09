@@ -27,9 +27,9 @@
   
               
                 <div class="form-group text-left">
-                  <label for="recyclerId">recyclerId</label>
+                  <label for="email">email</label>
                   
-                    <input formControlName="recyclerId" type="text" class="form-control">
+                    <input formControlName="email" type="text" class="form-control">
                   
                 </div>
               
@@ -82,10 +82,10 @@
   
             
               <div class="form-group text-left">
-                <label for="recyclerId">recyclerId</label>
+                <label for="email">email</label>
   
                 
-                  <input [ngModel]="recyclerId"formControlName="recyclerId" type="text" class="form-control">
+                  <input [ngModel]="email"formControlName="email" type="text" class="form-control">
                 
   
               </div>
@@ -179,7 +179,7 @@
           <thead class="thead">
             <tr class="thead-cols">
               
-                  <th class="info">recyclerId</th>
+                  <th class="info">email</th>
               
                   <th class="info">recyclerName</th>
               
@@ -192,7 +192,7 @@
             <tr *ngFor="let participant of allParticipants">
   
               
-                  <td class="participant-properties">{{participant.recyclerId}}</td>
+                  <td class="participant-properties">{{participant.email}}</td>
               
                   <td class="participant-properties">{{participant.recyclerName}}</td>
               

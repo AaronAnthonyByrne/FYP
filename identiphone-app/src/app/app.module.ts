@@ -18,7 +18,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { DataService } from './data.service';
+import { DataService } from './Services/data.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PhoneComponent } from './Phone/Phone.component';

@@ -14,7 +14,7 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { markAsStolenService } from './markAsStolen.service';
+import { markAsStolenService } from '../Services/markAsStolen.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({

@@ -20,9 +20,9 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import * as sinon from 'sinon';
-import { DataService } from '../data.service';
+import { DataService } from '../Services/data.service';
 import { PhoneComponent } from './Phone.component';
-import { PhoneService } from './Phone.service';
+import { PhoneService } from '../Services/Phone.service';
 import { Observable } from 'rxjs'
 
 describe('PhoneComponent', () => {

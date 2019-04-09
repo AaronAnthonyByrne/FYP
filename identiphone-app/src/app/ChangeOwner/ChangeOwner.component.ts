@@ -14,13 +14,12 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ChangeOwnerService } from './ChangeOwner.service';
+import { ChangeOwnerService } from '../Services/ChangeOwner.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-changeowner',
   templateUrl: './ChangeOwner.component.html',
-  styleUrls: ['./ChangeOwner.component.css'],
   providers: [ChangeOwnerService]
 })
 export class ChangeOwnerComponent implements OnInit {

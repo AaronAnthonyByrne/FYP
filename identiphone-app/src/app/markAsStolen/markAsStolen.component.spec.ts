@@ -20,9 +20,9 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as sinon from 'sinon';
-import { DataService } from '../data.service';
+import { DataService } from '../Services/data.service';
 import { markAsStolenComponent } from './markAsStolen.component';
-import {markAsStolenService} from './markAsStolen.service';
+import {markAsStolenService} from '../Services/markAsStolen.service';
 
 describe('markAsStolenComponent', () => {
   let component: markAsStolenComponent;
