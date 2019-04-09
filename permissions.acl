@@ -10,19 +10,12 @@ rule MemberSeeUpdateThemselvesOnly{
     condition: (m.getIdentifier() == t.getIdentifier())
     action: ALLOW
 }
-rule ReadPhonesNetwork {
-    description: "Allow all participants to read network"
-    participant: "org.hyperledger.composer.system.Participant"
-    operation: READ
-    resource(c):"org.hyperledger.composer.system.AssetRegistry"
-    condition: (c.owner.getIdentifier()==t.getIdentifier())
-    action: ALLOW
-}
+
 rule ReadNetwork{
   description: "Allow all participants to read network"
   participant: "org.hyperledger.composer.system.Participant"
   operation: READ
-  resource:"org.hyperledger.composer.system.Network"
+  resource:"org.hyperledger.composer.system.**"
   action: ALLOW
 }
 rule MembersCanSeeTheirPhones{
