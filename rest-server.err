@@ -1,0 +1,6 @@
+Unhandled error for request GET /api/system/ping: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name '90aaronbyrne@gmail.com' and the identifier '959de8674b0cea3b076c586ec3a2e40da76d98857056a824eef7affca5618051', has not been registered
+    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
+    at <anonymous>
+Unhandled error for request GET /api/Phone: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name '90aaronbyrne@gmail.com' and the identifier '959de8674b0cea3b076c586ec3a2e40da76d98857056a824eef7affca5618051', has not been registered
+    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
+    at <anonymous>
