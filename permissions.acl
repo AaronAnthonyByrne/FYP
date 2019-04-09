@@ -2,13 +2,21 @@
  * access control list. Defintion of who has acees to what
  */
 //Rules for Member
-rule MemberHasFullAccessToTheirAssets {
-    description: "Allow all owners full access to their assets"
-    participant(p): "org.example.mynetwork.Member"
+rule MemberSeeUpdateThemselvesOnly{
+    description: "Member can see and update their own record only"
+    participant(m): "org.example.mynetwork.Member"
     operation: ALL
-    resource(r): "org.example.mynetwork.Phone"
-    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    resource(t): "org.example.mynetwork.Member"
+    condition: (m.getIdentifier() == t.getIdentifier())
     action: ALLOW
+}
+rule MembersCanSeeTheirPhones{
+  description:"Memebers can see their phones"
+  participant(t): "org.example.mynetwork.Member"
+  operation: ALL
+  resource(c):"org.example.mynetwork.Phone"
+  condition: (c.owner.getIdentifier()==t.getIdentifier())
+  action: ALLOW
 }
 rule OwnerCanChangeOwnership {
     description: "Allow all participants to submit transactions"
@@ -26,13 +34,21 @@ rule AllParticipantsCanViewIMEI {
   action: ALLOW
 }
 //Retailer rules
-rule RetailterHasFullAccessToTheirAssets {
-    description: "Allow all owners full access to their assets"
+rule RetailterSeeUpdateThemselvesOnly{
+    description: "Allow can see and update their own record only"
     participant(p): "org.example.mynetwork.Retailer"
     operation: ALL
-    resource(r): "org.example.mynetwork.Phone"
-    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    resource(r): "org.example.mynetwork.Retailer"
+    condition: (p.getIdentifier() == r.getIdentifier())
     action: ALLOW
+}
+rule RetailterCanSeeTheirPhones{
+  description:"Memebers can see their phones"
+  participant(t): "org.example.mynetwork.Retailer"
+  operation: ALL
+  resource(c):"org.example.mynetwork.Phone"
+  condition: (c.owner.getIdentifier()==t.getIdentifier())
+  action: ALLOW
 }
 rule RetailerCanChangeOwner{
     description: "Allow all Retailers to change the phone ownership"
@@ -42,13 +58,21 @@ rule RetailerCanChangeOwner{
     action: ALLOW
 }
 //Recycler rules
-rule RecyclerHasFullAccessToTheirAssets {
+rule RecyclerSeeUpdateThemselvesOnly{
     description: "Allow all owners full access to their assets"
     participant(p): "org.example.mynetwork.Recycler"
     operation: ALL
-    resource(r): "org.example.mynetwork.Phone"
-    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    resource(r): "org.example.mynetwork.Recycler"
+    condition: (p.getIdentifier() == r.getIdentifier())
     action: ALLOW
+}
+rule RecyclerCanSeeTheirPhones{
+  description:"Memebers can see their phones"
+  participant(t): "org.example.mynetwork.Recycler"
+  operation: ALL
+  resource(c):"org.example.mynetwork.Phone"
+  condition: (c.owner.getIdentifier()==t.getIdentifier())
+  action: ALLOW
 }
 rule RecyclerCanChangeOwner{
     description: "Allow Recyclers to check onwership and change onwership if they own the phone"
@@ -58,14 +82,23 @@ rule RecyclerCanChangeOwner{
     action: ALLOW
 }
 //Law Enforcemnt rules
-rule LawEnforcementCanRead {
-    description: "Allow all law enforcement agents read access to all resources"
-    participant: "org.example.mynetwork.LawEnfrocment"
-    operation: READ
-    resource: "org.example.mynetwork.*"
+rule LawEnforcementSeeUpdateThemselvesOnly{
+    description: "Allow all owners full access to their assets"
+    participant(p): "org.example.mynetwork.LawEnfrocment"
+    operation: ALL
+    resource(r): "org.example.mynetwork.LawEnfrocment"
+    condition: (p.getIdentifier() == r.getIdentifier())
     action: ALLOW
 }
 //Network Provider rules
+rule NetworkProviderSeeUpdateThemselvesOnly{
+    description: "Allow all owners full access to their assets"
+    participant(p): "org.example.mynetwork.NetworkProvider"
+    operation: ALL
+    resource(r): "org.example.mynetwork.NetworkProvider"
+    condition: (p.getIdentifier() == r.getIdentifier())
+    action: ALLOW
+}
 rule NetworkProviderRules{
     description: "The Network provider should be able to change the phones status"
     participant: "org.example.mynetwork.NetworkProvider"
