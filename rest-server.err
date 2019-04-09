@@ -1,6 +1,0 @@
-Unhandled error for request GET /api/system/ping: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '388e505f646d44f3b268017df35735014c09aeccb066d94b29004f9ffc56b9d5', has not been registered
-    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
-    at <anonymous>
-Unhandled error for request GET /api/Phone: Error: Error trying to ping. Error: transaction returned with failure: Error: The current identity, with the name 'admin' and the identifier '388e505f646d44f3b268017df35735014c09aeccb066d94b29004f9ffc56b9d5', has not been registered
-    at _checkRuntimeVersions.then.catch (/home/g90aaronbyrne/.nvm/versions/node/v8.15.1/lib/node_modules/composer-rest-server/node_modules/composer-connector-hlfv1/lib/hlfconnection.js:886:34)
-    at <anonymous>
