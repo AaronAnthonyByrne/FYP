@@ -125,6 +125,6 @@ rule AllowAllReadAccess{
   description:"allow all read access to the network"
   participant:"org.example.mynetwork.*"
   operation:ALL
-  resource:"org.hyperledger.composer.system.Network.*"
+  resource:"org.hyperledger.composer.system.**"
   action: ALLOW
 }
