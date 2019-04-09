@@ -14,11 +14,11 @@ rule ReadPhonesNetwork {
     description: "Allow all participants to read network"
     participant: "org.hyperledger.composer.system.Participant"
     operation: READ
-    resource(c):"org.example.mynetwork.Phone"
+    resource(c):"org.hyperledger.composer.system.AssetRegistry#org.example.mynetwork.Phone"
     condition: (c.owner.getIdentifier()==t.getIdentifier())
     action: ALLOW
 }
-rule ReadNetwor {
+rule ReadNetwork{
   description: "Allow all participants to read network"
   participant: "org.hyperledger.composer.system.Participant"
   operation: READ
