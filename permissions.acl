@@ -14,7 +14,8 @@ rule ReadNetwork {
     description: "Allow all participants to read network"
     participant: "org.hyperledger.composer.system.Participant"
     operation: READ
-    resource: "org.hyperledger.composer.system.**"
+    resource(c):"org.example.mynetwork.Phone"
+    condition: (c.owner.getIdentifier()==t.getIdentifier())
     action: ALLOW
 }
 rule MembersCanSeeTheirPhones{
