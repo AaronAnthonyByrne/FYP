@@ -14,7 +14,7 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { RetailerService } from './Retailer.service';
+import { RetailerService } from '../Services/Retailer.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -32,14 +32,14 @@ export class RetailerComponent implements OnInit {
   private currentId;
   public errorMessage;
 
-  retailerId = new FormControl('', Validators.required);
+  email = new FormControl('', Validators.required);
   retailerName = new FormControl('', Validators.required);
   ownerId = new FormControl('', Validators.required);
 
 
   constructor(public serviceRetailer: RetailerService, fb: FormBuilder) {
     this.myForm = fb.group({
-      retailerId: this.retailerId,
+      email: this.email,
       retailerName: this.retailerName,
       ownerId: this.ownerId
     });
@@ -98,13 +98,13 @@ export class RetailerComponent implements OnInit {
   addParticipant(form: any): Promise<any> {
     this.participant = {
       $class: 'org.example.mynetwork.Retailer',
-      'retailerId': this.retailerId.value,
+      'email': this.email.value,
       'retailerName': this.retailerName.value,
       'ownerId': this.ownerId.value
     };
 
     this.myForm.setValue({
-      'retailerId': null,
+      'email': null,
       'retailerName': null,
       'ownerId': null
     });
@@ -114,7 +114,7 @@ export class RetailerComponent implements OnInit {
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
-        'retailerId': null,
+        'email': null,
         'retailerName': null,
         'ownerId': null
       });
@@ -133,7 +133,7 @@ export class RetailerComponent implements OnInit {
    updateParticipant(form: any): Promise<any> {
     this.participant = {
       $class: 'org.example.mynetwork.Retailer',
-      'retailerId': this.retailerId.value,
+      'email': this.email.value,
       'retailerName': this.retailerName.value,
     };
 
@@ -185,15 +185,15 @@ export class RetailerComponent implements OnInit {
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
-        'retailerId': null,
+        'email': null,
         'retailerName': null,
         'ownerId': null
       };
 
-      if (result.retailerId) {
-        formObject.retailerId = result.retailerId;
+      if (result.email) {
+        formObject.email = result.email;
       } else {
-        formObject.retailerId = null;
+        formObject.email = null;
       }
 
       if (result.retailerName) {
@@ -224,7 +224,7 @@ export class RetailerComponent implements OnInit {
 
   resetForm(): void {
     this.myForm.setValue({
-      'retailerId': null,
+      'email': null,
       'retailerName': null,
       'ownerId': null
     });

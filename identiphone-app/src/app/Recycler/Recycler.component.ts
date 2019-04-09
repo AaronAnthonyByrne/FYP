@@ -14,7 +14,7 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { RecyclerService } from './Recycler.service';
+import { RecyclerService } from '../Services/Recycler.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -32,14 +32,14 @@ export class RecyclerComponent implements OnInit {
   private currentId;
   public errorMessage;
 
-  recyclerId = new FormControl('', Validators.required);
+  email = new FormControl('', Validators.required);
   recyclerName = new FormControl('', Validators.required);
   ownerId = new FormControl('', Validators.required);
 
 
   constructor(public serviceRecycler: RecyclerService, fb: FormBuilder) {
     this.myForm = fb.group({
-      recyclerId: this.recyclerId,
+      email: this.email,
       recyclerName: this.recyclerName,
       ownerId: this.ownerId
     });
@@ -98,13 +98,13 @@ export class RecyclerComponent implements OnInit {
   addParticipant(form: any): Promise<any> {
     this.participant = {
       $class: 'org.example.mynetwork.Recycler',
-      'recyclerId': this.recyclerId.value,
+      'email': this.email.value,
       'recyclerName': this.recyclerName.value,
       'ownerId': this.ownerId.value
     };
 
     this.myForm.setValue({
-      'recyclerId': null,
+      'email': null,
       'recyclerName': null,
       'ownerId': null
     });
@@ -114,7 +114,7 @@ export class RecyclerComponent implements OnInit {
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
-        'recyclerId': null,
+        'email': null,
         'recyclerName': null,
         'ownerId': null
       });
@@ -133,7 +133,7 @@ export class RecyclerComponent implements OnInit {
    updateParticipant(form: any): Promise<any> {
     this.participant = {
       $class: 'org.example.mynetwork.Recycler',
-      'recyclerId': this.recyclerId.value,
+      'email': this.email.value,
       'recyclerName': this.recyclerName.value,
     };
 
@@ -185,15 +185,15 @@ export class RecyclerComponent implements OnInit {
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
-        'recyclerId': null,
+        'email': null,
         'recyclerName': null,
         'ownerId': null
       };
 
-      if (result.recyclerId) {
-        formObject.recyclerId = result.recyclerId;
+      if (result.email) {
+        formObject.email = result.email;
       } else {
-        formObject.recyclerId = null;
+        formObject.email = null;
       }
 
       if (result.recyclerName) {
@@ -224,7 +224,7 @@ export class RecyclerComponent implements OnInit {
 
   resetForm(): void {
     this.myForm.setValue({
-      'recyclerId': null,
+      'email': null,
       'recyclerName': null,
       'ownerId': null
     });

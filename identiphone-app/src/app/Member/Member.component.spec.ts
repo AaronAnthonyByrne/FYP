@@ -20,9 +20,9 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import * as sinon from 'sinon';
-import { DataService } from '../data.service';
+import { DataService } from '../Services/data.service';
 import { MemberComponent } from './Member.component';
-import { MemberService } from './Member.service';
+import { MemberService } from '../Services/Member.service';
 import { Observable } from 'rxjs';
 
 describe('MemberComponent', () => {

@@ -14,7 +14,7 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { NetworkProviderService } from './NetworkProvider.service';
+import { NetworkProviderService } from '../Services/NetworkProvider.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -33,13 +33,13 @@ export class NetworkProviderComponent implements OnInit {
   public errorMessage;
 
   networkId = new FormControl('', Validators.required);
-  compnayName = new FormControl('', Validators.required);
+  companyName = new FormControl('', Validators.required);
 
 
   constructor(public serviceNetworkProvider: NetworkProviderService, fb: FormBuilder) {
     this.myForm = fb.group({
       networkId: this.networkId,
-      compnayName: this.compnayName
+      companyName: this.companyName
     });
   };
 
@@ -97,12 +97,12 @@ export class NetworkProviderComponent implements OnInit {
     this.participant = {
       $class: 'org.example.mynetwork.NetworkProvider',
       'networkId': this.networkId.value,
-      'compnayName': this.compnayName.value
+      'companyName': this.companyName.value
     };
 
     this.myForm.setValue({
       'networkId': null,
-      'compnayName': null
+      'companyName': null
     });
 
     return this.serviceNetworkProvider.addParticipant(this.participant)
@@ -111,7 +111,7 @@ export class NetworkProviderComponent implements OnInit {
       this.errorMessage = null;
       this.myForm.setValue({
         'networkId': null,
-        'compnayName': null
+        'companyName': null
       });
       this.loadAll(); 
     })
@@ -128,7 +128,7 @@ export class NetworkProviderComponent implements OnInit {
    updateParticipant(form: any): Promise<any> {
     this.participant = {
       $class: 'org.example.mynetwork.NetworkProvider',
-      'compnayName': this.compnayName.value
+      'companyName': this.companyName.value
     };
 
     return this.serviceNetworkProvider.updateParticipant(form.get('networkId').value, this.participant)
@@ -180,7 +180,7 @@ export class NetworkProviderComponent implements OnInit {
       this.errorMessage = null;
       const formObject = {
         'networkId': null,
-        'compnayName': null
+        'companyName': null
       };
 
       if (result.networkId) {
@@ -189,10 +189,10 @@ export class NetworkProviderComponent implements OnInit {
         formObject.networkId = null;
       }
 
-      if (result.compnayName) {
-        formObject.compnayName = result.compnayName;
+      if (result.companyName) {
+        formObject.companyName = result.companyName;
       } else {
-        formObject.compnayName = null;
+        formObject.companyName = null;
       }
 
       this.myForm.setValue(formObject);
@@ -212,7 +212,7 @@ export class NetworkProviderComponent implements OnInit {
   resetForm(): void {
     this.myForm.setValue({
       'networkId': null,
-      'compnayName': null
+      'companyName': null
     });
   }
 }

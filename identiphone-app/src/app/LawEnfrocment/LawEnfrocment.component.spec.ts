@@ -20,9 +20,9 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import * as sinon from 'sinon';
-import { DataService } from '../data.service';
+import { DataService } from '../Services/data.service';
 import { LawEnfrocmentComponent } from './LawEnfrocment.component';
-import { LawEnfrocmentService } from './LawEnfrocment.service';
+import { LawEnfrocmentService } from '../Services/LawEnfrocment.service';
 import { Observable } from 'rxjs';
 
 describe('LawEnfrocmentComponent', () => {

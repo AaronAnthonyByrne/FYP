@@ -5,28 +5,26 @@ import {Event} from './org.hyperledger.composer.system';
 // export namespace org.example.mynetwork{
    export abstract class Owner extends Participant {
       ownerId: string;
+      email: string;
    }
    export enum PhoneStatus {
-      UNSOLD,
-      OWNED,
-      STOLEN,
+      InShop,
+      Bought,
+      Stolen,
    }
    export class Member extends Owner {
-      email: string;
       firstName: string;
       lastName: string;
    }
    export class Retailer extends Owner {
-      retailerId: string;
       retailerName: string;
    }
    export class Recycler extends Owner {
-      recyclerId: string;
       recyclerName: string;
    }
    export class NetworkProvider extends Participant {
       networkId: string;
-      compnayName: string;
+      companyName: string;
    }
    export class LawEnfrocment extends Participant {
       branchId: string;

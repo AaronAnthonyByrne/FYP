@@ -37,9 +37,9 @@
   
               
                 <div class="form-group text-left">
-                  <label for="compnayName">compnayName</label>
+                  <label for="companyName">companyName</label>
                   
-                    <input formControlName="compnayName" type="text" class="form-control">
+                    <input formControlName="companyName" type="text" class="form-control">
                   
                 </div>
               
@@ -81,10 +81,10 @@
               </div>
             
               <div class="form-group text-left">
-                <label for="compnayName">compnayName</label>
+                <label for="companyName">companyName</label>
   
                 
-                  <input [ngModel]="compnayName"formControlName="compnayName" type="text" class="form-control">
+                  <input [ngModel]="companyName"formControlName="companyName" type="text" class="form-control">
                 
   
               </div>
@@ -162,7 +162,7 @@
               
                   <th class="info">networkId</th>
               
-                  <th class="info">compnayName</th>
+                  <th class="info">companyName</th>
               
                 <th class="info-actions">Actions</th>
             </tr>
@@ -173,7 +173,7 @@
               
                   <td class="participant-properties">{{participant.networkId}}</td>
               
-                  <td class="participant-properties">{{participant.compnayName}}</td>
+                  <td class="participant-properties">{{participant.companyName}}</td>
               
               <td>
                 <button (click)="getForm(participant.networkId);" type="button" class="btn btn-update" data-toggle="modal" data-target="#updateParticipantModal">

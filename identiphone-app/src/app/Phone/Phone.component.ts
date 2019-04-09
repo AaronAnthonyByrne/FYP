@@ -14,7 +14,7 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { PhoneService } from './Phone.service';
+import { PhoneService } from '../Services/Phone.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
