@@ -6,13 +6,13 @@ Using the Hyperledger Fabric framework a blockchain network was built called “
 In this case the asset is a mobile phone. The participants are members of the public, phone retailers, phone recyclers, law enforcement, network providers and an administrator. T
 he two transactions that exist on the network are changing of the owner and the marking a phone as stolen. These classes are defined in the Hyperledger composer modelling language file (.cto). 
 ![Overview](images/overview.png)
-![Example Particpants](images/participant.png)
-![Example asset](images/asset.png)
+![Example Particpants](images/participants.png)
+![Example asset](images/assest-Transactions.png)
 
 To execute the transactions on the network the logic.js file is called. This file contains the JavaScript of how the owners name is changed to a new owner and how a phone can be marked as stolen.
-![The Javascript](images/javascript.png)
+![The Javascript](images/changeOwnertx.png)
+![The Javascript](images/phoneStatusTX.png)
 
-These are the pieces of code that I have personally made/modified to suit my needs
 
 
 To run the code you need to first download the fabric-dev-servers
