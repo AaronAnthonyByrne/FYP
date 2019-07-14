@@ -12,56 +12,103 @@
  * limitations under the License.
  */
 
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { PhoneService } from '../Services/Phone.service';
 import 'rxjs/add/operator/toPromise';
 import { MemberService } from '../Services/Member.service';
-import { Member } from 'app/org.example.mynetwork';
-// import * as mongoose from "mongoose";
+import { Participant } from 'app/org.hyperledger.composer.system';
+import { AppComponent } from 'app/app.component';
+import { ChangeOwnerService } from 'app/Services/ChangeOwner.service';
+//const uuidv1 = require('uuid/v1');
+import {v1 as uuid } from 'uuid';
+import { Immediate } from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-user',
   templateUrl: './User.component.html',
   styleUrls: ['../app.component.css'],
-  providers: [PhoneService, MemberService]
+  providers: [PhoneService, MemberService, ChangeOwnerService]
 })
 export class UserComponent implements OnInit {
 
-  myForm: FormGroup;
+  phoneForm: FormGroup;
+  memberForm: FormGroup;
+  coForm: FormGroup;
+  searchForm:FormGroup;
 
   public allAssets;
+  private participant;
   public allParticipants;
   private asset;
+  private Transaction;
+  public allTransactions;
   private currentId;
   public errorMessage;
   public user;
+  public userType;
+  public assetIMEI;
+  public counter = Math.floor((Math.random() * 100) + 1);
+  public timestamp = new Date();
+  public phone_status;
+  public phone_IMEI;
+  public member_firstN;
+  public member_lastN;
+  public member_email;
+  public member_no;
 
-  // to determine who has signed in
+  
+
+  IMEI = new FormControl('', Validators.required);
+  email = new FormControl('', Validators.required);
+  firstName = new FormControl('', Validators.required);
+  lastName = new FormControl('', Validators.required);
+  phone = new FormControl('', Validators.required);
+  newOwner = new FormControl('', Validators.required);
+  search =  new FormControl('',Validators.required);
+
+  // // to determine who has signed in
   admin: boolean = false;
-  member: boolean = true;
-  recycler: boolean = false;
+  member: boolean = false;
+  recycler: boolean = true;
   retailer: boolean = false;
   law: boolean = false;
   network: boolean = false;
+  userKnown: boolean = false; 
+  loggedIn: boolean = true;
 
-
-  IMEI = new FormControl('', Validators.required);
-  phoneStatus = new FormControl('', Validators.required);
-  owner = new FormControl('', Validators.required);
-
-  constructor(public serviceMember: MemberService, public servicePhone: PhoneService, fb: FormBuilder) {
-
+  constructor(public serviceMember: MemberService, public servicePhone: PhoneService, public serviceChangeOwner: ChangeOwnerService, fb: FormBuilder) {
+    this.phoneForm=fb.group({
+      IMEI: this.IMEI,
+    });
+    this.memberForm = fb.group({
+      email: this.email,
+      firstName: this.firstName,
+      lastName: this.lastName
+    });
+    this.coForm=fb.group({
+      phone: this.phone,
+      newOwner: this.newOwner
+    })
+    this.searchForm=fb.group({
+      search:this.search
+    })
   };
 
   ngOnInit(): void {
-    this.checkUser();
-    if (this.member || this.recycler || this.retailer) {
-      this.loadAllPhones();
-    }
-    if(this.admin){
-    this.loadAllMembers();
-    }
+    console.log("TIMESTAMP:"+this.timestamp.toISOString());
+    this.checkUser()
+    .then(() =>{
+     // console.log(this.member);
+      if (this.member || this.recycler || this.retailer) {
+        //console.log("IM HERE");
+        this.loadAllPhones();
+      }
+      if(this.admin){
+      this.loadAllMembers()
+      }
+    });
   }
 
   checkUser(): Promise<any> {
@@ -70,11 +117,42 @@ export class UserComponent implements OnInit {
       .then((result) => {
         this.errorMessage = null;
         this.user = result;
+        this.userKnown = true;
+        let temp = this.user.participant.split('.')[3];
+        this.userType = temp.split('#')[0];
+        //console.log("USER TYPE: "+this.userType)
+        if (this.userType == 'Retailer') {
+          this.retailer = true;
+          //console.log("RE")
+        }
+        if (this.userType == 'admin') {
+          this.admin = true;
+          //console.log("A") 
+        }
+        if (this.userType == 'LawEnforcement') {
+          this.law = true;
+          //console.log("L")
+        }
+        if (this.userType == 'Recycler') {
+          this.recycler = true;
+          //console.log("REC")
+        }
+        if (this.userType == 'Member') {
+          this.member = true;
+         // console.log("ME")
+        }
+        if (this.userType == 'system') {
+          this.admin = true;
+         // console.log("N")
+        }
+        this.loggedIn=true;
       });
   }
 
   loadAllPhones(): Promise<any> {
-    const phoneList = [];
+    let phoneList = [];
+    let j =0;
+    let tempList=[];
     return this.servicePhone.getAll()
       .toPromise()
       .then((result) => {
@@ -82,7 +160,17 @@ export class UserComponent implements OnInit {
         result.forEach(asset => {
           phoneList.push(asset);
         });
-        this.allAssets = phoneList;
+        for(let i = 0; i < phoneList.length; i++){
+          //console.log("IS this"+phoneList[i].owner.split('#')[1]+" = "+this.user.participant.split('#')[1]);
+          if(phoneList[i].owner.split('#')[1] == (this.user.participant.split('#')[1])){
+            //console.log("PO"+phoneList[i]);
+            
+            tempList[j] = phoneList[i];
+            //console.log(tempList.length);
+            j++;
+          }
+        }
+        this.allAssets = tempList;
       })
       .catch((error) => {
         if (error === 'Server error') {
@@ -116,8 +204,126 @@ export class UserComponent implements OnInit {
       });
   }
 
+  addAsset(form: any): Promise<any> {
+    this.asset = {
+      $class: 'org.example.mynetwork.Phone',
+      'IMEI': this.IMEI.value,
+      'phoneStatus': 'InShop',
+      'owner': 'org.example.mynetwork.Owner#'+this.user.participant.split('#')[1]
+    };
+    return this.servicePhone.addAsset(this.asset)
+    .toPromise()
+    .then(() => {
+      this.errorMessage = null;
+      this.phoneForm.setValue({
+        'IMEI': null
+      });
+      this.loadAllPhones();
+    })
+    .catch((error) => {
+      if (error === 'Server error') {
+          this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+      } else {
+          this.errorMessage = error;
+      }
+    });
+  }
 
-	/**
+  getAsset(form: any): Promise<any>{
+    
+    console.log("INSIDE the getASSET:"+form.get('search').value);
+    return this.servicePhone.getAsset(form.get('search').value)
+    .toPromise()
+    .then((res)=>{
+      this.phone_IMEI = res.IMEI;
+      this.phone_status = res.phoneStatus;
+      this.member_no= res.owner;
+      console.log(this.phone_IMEI);
+      this.member_no = this.member_no.split('#')[1];
+      console.log(this.member_no);
+      return this.serviceMember.getparticipant(this.member_no)
+      .toPromise()
+      .then((values)=>{
+        this.member_email = values.email;
+        this.member_firstN = values.firstName;
+        this.member_lastN = values.lastName
+        this.searchForm.setValue({
+          'search': null
+        });
+        console.log(this.member_email+" "+this.member_firstN+" "+this.member_lastN);
+      })
+      .catch((error) => {
+        if (error === 'Server error') {
+            this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+        } else {
+            this.errorMessage = error;
+        }
+      });
+
+    })
+  }
+
+  addParticipant(form: any): Promise<any> {
+    this.participant = {
+      $class: 'org.example.mynetwork.Member',
+      'email': this.email.value,
+      'firstName': this.firstName.value,
+      'lastName': this.lastName.value,
+      'ownerId': this.counter
+    };
+
+    alert(this.participant.firstName+" "+this.participant.lastName+" has been added to the blockchain");
+    return this.serviceMember.addParticipant(this.participant)
+    .toPromise()
+    .then(() => {
+      this.errorMessage = null; 
+     
+    })
+    .catch((error) => {
+      if (error === 'Server error') {
+        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+      } else {
+        this.errorMessage = error;
+      }
+    });
+  }
+
+  addTransaction(form: any): Promise<any> {
+    console.log("PHONE VALUE"+this.phone.value);
+    this.Transaction = {
+      $class: 'org.example.mynetwork.ChangeOwner',
+      'phone': 'org.example.mynetwork.Phone#' + this.phone.value,
+      'newOwner': 'org.example.mynetwork.Member#' + this.newOwner.value,
+      'timestamp': this.timestamp.toISOString()
+    };
+
+    return this.serviceChangeOwner.addTransaction(this.Transaction)
+      .toPromise()
+      .then(() => {
+        this.errorMessage = null;
+        this.asset = {
+          $class: 'org.example.mynetwork.Phone',
+          'phoneStatus': 'Bought',
+          'owner': 'org.example.mynetwork.Member#' + this.newOwner.value
+        };
+        return this.servicePhone.updateAsset(this.phone.value, this.asset)
+          .toPromise()
+          .then(() => {
+            this.errorMessage = null;
+            this.loadAllPhones();
+          })
+      })
+      .catch((error) => {
+        if (error === 'Server error') {
+          this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+        } else {
+          this.errorMessage = error;
+        }
+      });
+  }
+
+
+ 	/**
    * Event handler for changing the checked state of a checkbox (handles array enumeration values)
    * @param {String} name - the name of the assjet field to update
    * @param {any} value - the enumeration value for which to toggle the checked state
@@ -142,5 +348,34 @@ export class UserComponent implements OnInit {
     return this[name].value.indexOf(value) !== -1;
   }
 
-
+  getData(val) {
+    this.assetIMEI = val;
+  }
+  //resting all forms
+  resetPhoneForm(): void {
+    this.phoneForm.setValue({
+      'IMEI': null
+      });
+  }
+  resetMemberForm(): void {
+    this.memberForm.setValue({
+      'email': null,
+      'firstName': null,
+      'lastName': null,
+    });
+  }
+  resetForm(): void {
+    this.coForm.setValue({
+      //'phone': null,
+      'newOwner': null
+    });
+  }
+  restDetails():void{
+    this.phone_status =null;
+    this.phone_IMEI=null;
+    this.member_firstN=null;
+    this.member_lastN=null;
+    this.member_email=null;
+    this.member_no=null;
+  }
 }

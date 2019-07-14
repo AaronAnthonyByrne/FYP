@@ -11,11 +11,20 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <a [routerLink]="['']"><img class="center" src="assets/images/logo.png" width="150px" height="150px"/></a>
+<!-- <nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<a [routerLink]="['']"><img class="center" src="assets/images/logo.png" width="150px" height="150px" /></a>
+        <div *ngIf=loggedIn>
+			<a type="button" type="submit" class="btn btn-login" [routerLink]="['']"(click)="loggedIn = false">Sign Out</a>
+		</div>
+        <div *ngIf=!loggedIn>
+            <a type="button" type="submit" class="btn btn-login"
+                href="https://35.204.34.37.xip.io:3000/auth/google"
+                (click)="loggedIn = true">
+				Sign In</a>
+		</div>
+		
     </div>
+</nav> -->
 
-  </nav>
-
-  <router-outlet></router-outlet>
+<router-outlet></router-outlet>

@@ -11,81 +11,262 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<!-- Table that appears when user clicks add model -->
-<div>
-	Welcome Back, {{user.participant.split('#')[1]}}
-</div>
-<div *ngIf="!admin" class="searchbar">
-	<form>
-		<input type="text" placeholder="Enter IMEI">
-		<button type="submit" class="fa-search">Search</button>
-	</form>
-</div>
 
-<div *ngIf="member || retailer || recycler"class="container">
-	<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
-		<strong>Error:</strong> {{errorMessage}}
-	</div>
-	<div class="row">
-		<div class="col-md-9">
-			<h1 class="participant-title" id='assetName'>Phone</h1>
-		</div>
-		<div class="col-md-3">
-		</div>
-	</div>
-	<br>
-	<div class="row">
-		<div class="col-md-12">
-			<table class="table table-responsive">
-				<thead class="thead">
-					<tr class="thead-cols">
-						<th class="info">IMEI</th>
-						<th class="info">Phones Status</th>
-						<th class="info">Owner</th>
-						<th class="info-actions">Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let asset of allAssets">
-						<td class="participant-properties">{{asset.IMEI}}</td>
-						<td class="participant-properties">{{asset.phoneStatus}}</td>
-						<td class="participant-properties">{{asset.owner.split('#')[1]}}</td>
 
-					</tr>
-				</tbody>
-			</table>
+<div class="modal fade" id="addAssetModal" tabindex="-1" role="dialog" aria-labelledby="addAssetModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="addAssetModalLabel">Add Phone</h4>
+				<p class="modal-intro">Enter the required values below.</p>
+			</div>
+			<form [formGroup]="phoneForm">
+				<div class="modal-body">
+					<div class="form-group text-left">
+						<label for="IMEI">IMEI</label>
+						<input formControlName="IMEI" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+							class="form-control" pattern="\d{15}" maxlength="15" required>
+						
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button [disabled]="!phoneForm.valid" (click)="addAsset(phoneForm);" type="submit" class="btn btn-success"
+						data-dismiss="modal">Confirm</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
-
-<div *ngIf="admin" class="container">
-	<div class="row">
-		<div class="col-md-9">
-			<h1 class="participant-title" id='participantName'>Members</h1>
-		</div>
-		<div class="col-md-3">
+<div class="modal fade" id="addParticipantModal" tabindex="-1" role="dialog" aria-labelledby="addParticipantModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="addParticipantModalLabel">Create a new Member on the Blockchain</h4>
+				<p class="modal-intro">Enter the required values below.</p>
+			</div>
+			<form [formGroup]="memberForm">
+				<div class="modal-body">
+					<div class="form-group text-left">
+						<label for="email">email</label>
+						<input formControlName="email" type="email" class="form-control" required>
+						<span ng-show="memberForm.email.$touched && memberForm.email.$invalid">The email is required.</span>
+					</div>
+					<div class="form-group text-left">
+						<label for="firstName">firstName</label>
+						<input formControlName="firstName" type="text" class="form-control" required>
+						<span ng-show="memberForm.firstName.$touched && memberForm.firstName.$invalid">Users first name is
+							required.</span>
+					</div>
+					<div class="form-group text-left">
+						<label for="lastName">lastName</label>
+						<input formControlName="lastName" type="text" class="form-control" required>
+						<span ng-show="memberForm.lastName.$touched && memberForm.lastName.$invalid">Users last name is
+							required.</span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button [disabled]="!memberForm.valid" (click)="addParticipant(memberForm);" type="submit"
+						class="btn btn-success" data-dismiss="modal">Confirm</button>
+				</div>
+			</form>
 		</div>
 	</div>
-	<br>
+</div>
+<div class="modal fade" id="addTransactionModal" tabindex="-1" role="dialog" aria-labelledby="addTransactionModalLabel">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  <h4 class="modal-title" id="addTransactionModalLabel">Create Transaction</h4>
+			<p class="modal-intro">Enter the required values below.</p>
+		</div>
+		<form [formGroup]="coForm">
+		  <div class="modal-body">
+			<div class="form-group text-left">
+			  <label for="phone">IMEI Number</label>
+			  <input formControlName="phone" type="text"
+				class="form-control" value="{{assetIMEI?.IMEI}}">
+			</div>
+			<div class="form-group text-left">
+			  <label for="newOwner">New Owner</label>
+			  <input formControlName="newOwner"type="text" class="form-control" required>
+			</div>       
+		  </div>
+		  <div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			<button (click)="addTransaction(coForm);" type="submit" class="btn btn-success" data-dismiss="modal">Confirm</button>
+		  </div>
+		</form>
+	  </div>
+	</div>
+  </div>
+  <div class="modal fade" id="showDetailsModal" tabindex="-1" role="dialog" aria-labelledby="showDetailsLabel">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  <h4 class="modal-title" id="showDetailsLabel">Phone Owner Details</h4>
+		</div>
+		  <div class="modal-body">
+			<div class="form-group text-left">
+				<label for="IMEI">IMEI</label>
+				<p>{{phone_IMEI}}</p>
+			</div>
+			<div class="form-group text-left">
+			  <label for="phoneStatus">Phones current status:</label>
+			  <p>{{phone_status}}</p>
+			</div>
+			<div class="form-group text-left">
+				<label for="ownerName">Current Owners name:</label>
+				<p>{{member_firstN}} {{member_lastN}}</p>
+			  </div>
+			  <div class="form-group text-left">
+				<label for="ownerEmail">Current Owners email:</label>
+				<p>{{member_email}}</p>
+			  </div>             
+		  </div>
+		  <div class="modal-footer">
+			  <button type="button" (click)="restDetails()" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+	  </div>
+	</div>
+  </div>
+<div class="container">
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<img class="center" src="assets/images/logo.png" width="150px" height="150px" />
+			<div><a type="button" type="submit" class="btn btn-login" [routerLink]="['']" (click)="loggedIn = false">Sign
+					Out</a></div>
+		</div>
+	</nav>
+
+	<!-- Welcome for user -->
+	<div *ngIf="userKnown">
+		Welcome Back, {{user.participant.split('#')[1]}}
+	</div>
+
 	<div class="row">
-		<div class="col-md-12">
-			<table class="table table-responsive">
-				<thead class="thead">
-					<tr class="thead-cols">
-						<th class="info">Email</th>
-						<th class="info">Name</th>
-						<th class="info">Id</th>
-						<th class="info-actions">Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let participant of allParticipants">
-						<td class="participant-properties">{{participant.email}}</td>
-						<td class="participant-properties">{{participant.firstName}} {{participant.lastName}}</td>
-						<td class="participant-properties">{{participant.ownerId}}</td>
-					</tr>
-				</tbody>
-			</table>
+
+		<!-- Phone Asset appears for only the retailer member and recycler -->
+		<div *ngIf="member || retailer || recycler">
+			<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+				<strong>Error:</strong> {{errorMessage}}
+			</div>
+			<!-- Searchbar appears for all users but Admin -->
+			<div *ngIf="!admin" class="searchbar">
+				<form [formGroup]="searchForm">
+					<input type="text" placeholder="Enter IMEI" formControlName="search" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+					class="form-control" pattern="\d{15}" maxlength="15" required>
+					<button (click)="getAsset(searchForm);" type="submit" class="fa-search"data-toggle="modal"
+					data-target="#showDetailsModal">Search</button>
+				</form>
+			</div>
+			<!-- Add Phone only appears for retailer -->
+			<div *ngIf="retailer">
+				<button (click)="resetPhoneForm()" type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#addAssetModal">
+					<span
+						style="font-size: 14px;font-family: inherit;border-right:1px solid rgba(255,255,255,0.5);padding-right:0.6em;margin-right:0.5em;vertical-align:middle;">
+						<svg class="plus-svg" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+							<path fill-rule="evenodd"
+								d="M5.5,4.5 L9.5,4.5 L10,4.5 L10,5.5 L9.5,5.5 L5.5,5.5 L5.5,9.5 L5.5,10 L4.5,10 L4.5,9.5 L4.5,5.5 L0.5,5.5 L0,5.5 L0,4.5 L0.5,4.5 L4.5,4.5 L4.5,0.5 L4.5,0 L5.5,0 L5.5,0.5 L5.5,4.5 Z" />
+						</svg>
+					</span>
+					Add Phone
+				</button>
+			</div>
+			<div *ngIf="retailer">
+				<button (click)="resetMemberForm()" type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#addParticipantModal">
+					<span
+						style="font-size: 14px;font-family: inherit;border-right:1px solid rgba(255,255,255,0.5);padding-right:0.6em;margin-right:0.5em;vertical-align:middle;">
+						<svg class="plus-svg" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+							<path fill-rule="evenodd"
+								d="M5.5,4.5 L9.5,4.5 L10,4.5 L10,5.5 L9.5,5.5 L5.5,5.5 L5.5,9.5 L5.5,10 L4.5,10 L4.5,9.5 L4.5,5.5 L0.5,5.5 L0,5.5 L0,4.5 L0.5,4.5 L4.5,4.5 L4.5,0.5 L4.5,0 L5.5,0 L5.5,0.5 L5.5,4.5 Z" />
+						</svg>
+					</span>
+					Add User
+				</button>
+			</div>
+
+		</div>
+		<br>
+		<div class="row" *ngIf="!admin">
+			<div class="col-md-9">
+				<h3 class="participant-title" id='assetName'>Phone's currently owned</h3>
+			</div>
+			<div class="col-md-12">
+				<table class="table table-responsive">
+					<thead class="thead">
+						<tr class="thead-cols">
+							<th class="info">IMEI</th>
+							<th class="info">Phones Status</th>
+							<th class="info">Owner</th>
+							<th class="info">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let asset of allAssets">
+							<td class="participant-properties asset-IMEI">{{asset.IMEI}}</td>
+							<td class="participant-properties asset-Phone">{{asset.phoneStatus}}</td>
+							<td class="participant-properties asset-Owner">{{asset.owner.split('#')[1]}}</td>
+							<td class="participant-properties">
+								<button (click)="resetForm(); getData(asset)" type="button" class="btn btn-primary"
+									data-toggle="modal" data-target="#addTransactionModal">Change Owner</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="admin">
+		<div class="row">
+			<div class="col-md-9">
+				<h1 class="participant-title" id='participantName'>Members</h1>
+			</div>
+			<div *ngIf="admin">
+				<button type="button" class="btn btn-primary">
+					<span
+						style="font-size: 14px;font-family: inherit;border-right:1px solid rgba(255,255,255,0.5);padding-right:0.6em;margin-right:0.5em;vertical-align:middle;">
+						<svg class="plus-svg" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+							<path fill-rule="evenodd"
+								d="M5.5,4.5 L9.5,4.5 L10,4.5 L10,5.5 L9.5,5.5 L5.5,5.5 L5.5,9.5 L5.5,10 L4.5,10 L4.5,9.5 L4.5,5.5 L0.5,5.5 L0,5.5 L0,4.5 L0.5,4.5 L4.5,4.5 L4.5,0.5 L4.5,0 L5.5,0 L5.5,0.5 L5.5,4.5 Z" />
+						</svg>
+					</span>
+					Add Member
+				</button>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-responsive">
+					<thead class="thead">
+						<tr class="thead-cols">
+							<th class="info">Email</th>
+							<th class="info">Name</th>
+							<th class="info">Id</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let participant of allParticipants">
+							<td class="participant-properties">{{participant.email}}</td>
+							<td class="participant-properties">{{participant.firstName}} {{participant.lastName}}</td>
+							<td class="participant-properties">{{participant.ownerId}}</td>
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

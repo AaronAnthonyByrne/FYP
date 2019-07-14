@@ -20,7 +20,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './home.component.html',
   styleUrls: ['../app.component.css']
 })
+
 export class HomeComponent {
+
 
   constructor(private httpClient: HttpClient) {
   }

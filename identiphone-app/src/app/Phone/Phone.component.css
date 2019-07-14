@@ -27,8 +27,8 @@
     line-height: 10px;
     height: 40px;
     width: 153px;
-    float: right;
     margin-top: 5%;
+    display: inline-block;
 }
 
 .table > thead > tr > th {

@@ -23,6 +23,7 @@ export class DataService<Type> {
     private resolveSuffix = '?resolve=true';
     private actionUrl: string;
     private headers: Headers;
+    loggedIn: boolean;
 
     constructor(private http: Http) {
         this.actionUrl = 'https://35.204.34.37.xip.io:3000/api/';
@@ -81,6 +82,7 @@ export class DataService<Type> {
       return this.http.get(this.actionUrl +'system/ping',{withCredentials: true})
           .map(this.extractData)
           .catch(this.handleError);
+
     }
 
     private handleError(error: any): Observable<string> {

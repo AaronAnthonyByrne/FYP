@@ -12,33 +12,19 @@
  * limitations under the License.
  */
 
-import { Component, AfterViewInit } from '@angular/core';
-import $ from 'jquery';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
-  title = 'app works!';
+export class AppComponent implements OnInit {
+  title = 'Identiphone';
 
-  ngAfterViewInit() {
-    $('.nav a').on('click', function(){
-      $('.nav').find('.active').removeClass('active');
-      $(this).parent().addClass('active');
-    });
+  loggedIn: boolean;
+ ngOnInit(): void{
+  this.loggedIn = false;
+ }
 
-    $('.dropdown').on('show.bs.dropdown', function(e){
-      $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
-    });
-
-    $('.dropdown').on('hide.bs.dropdown', function(e){
-      $(this).find('.dropdown-menu').first().stop(true, true).slideUp(200);
-    });
-
-    $('.dropdown-menu li').on('click', function(){
-      $(this).parent().parent().addClass('active');
-    });
-  }
 }

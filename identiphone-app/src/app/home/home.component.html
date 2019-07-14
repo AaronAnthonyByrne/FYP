@@ -13,20 +13,26 @@
 -->
 	
 <div class="container">
-	<div>
-		<a type="button" type="submit" class="btn btn-success btn-primary"
-			href="https://35.204.34.37.xip.io:3000/auth/google">
-			Sign In</a>
-	</div>
-	<div class="jumbotron">
-		<h2>Welcome to Identiphone.</h2>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<a [routerLink]="['']"><img class="center" src="assets/images/logo.png" width="150px" height="150px" /></a>
+			<div>
+				<a type="button" type="submit" class="btn btn-login"
+					href="https://35.204.34.37.xip.io:3000/auth/google">
+					Sign In</a>
+			</div>
+			
+		</div>
+	</nav>
+	<div class="jumbotron blocktext">
+		<h1><b>Welcome to Identiphone.</b></h1>
 		<p>Identiphone is a blockchain solution to help track a phones history and to help stop the selling of stolen phones
 		</p>
 	</div>
 </div>
 <div class="container">
-	<div class="jumbotron">
-		<h3>How does it work</h3>
+	<div class="jumbotron blocktext">
+		<h2><b>How does it work</b></h2>
 		<ul>
 			<li><p>Your phone is registered when you buy it or opt in.</p></li>
 			<li><p>If your phone is ever stolen, you can log into Identiphone to retrieve your IMEI number and with this number you can ring your network provider to block your phone</p></li>
