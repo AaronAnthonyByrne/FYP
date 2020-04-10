@@ -41,7 +41,7 @@
     "@types/jsonwebtoken": "^8.3.2",
     "@types/mongoose": "^5.3.24",
     "angularx-social-login": "^1.2.6",
-    "auth0-js": "^9.10.0",
+    "auth0-js": "^9.13.2",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^3.3.7",
     "cfenv": "^1.0.4",
